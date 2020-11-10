@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementSpeed; 
+    public float movementSpeed;
     public Rigidbody2D rb;
 
     public float jumpForce = 20f;
     public Transform feet;
     public LayerMask groundLayers;
+    public LayerMask enemyLayer;
 
     float mx;
 
@@ -31,10 +32,12 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = movement;
     }
 
-    public bool IsGrounded(){
+    public bool IsGrounded() {
         Collider2D groundCheck = Physics2D.OverlapCircle(feet.position, 0.5f, groundLayers);
 
-        if (groundCheck != null) {
+        Collider2D enemyCheck = Physics2D.OverlapCircle(feet.position, 0.5f, enemyLayer);
+
+        if (groundCheck != null || enemyCheck != null) {
             return true;
         }
 
