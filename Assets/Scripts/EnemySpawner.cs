@@ -18,17 +18,32 @@ public class EnemySpawner : MonoBehaviour
     private float enemySpawnYMin = -3.0f;
     private float enemySpawnYMax = 5.0f;
 
-    public GameObject enemyPrefab;
-    public Transform enemyParent;
+
+    //references for gameobjects and transforms
+    public GameObject enemyGroundPrefab;
+    public Transform enemyGroundParent;
+
+    public GameObject enemyFloatPrefab;
+    public Transform enemyFloatParent;
+
     public Transform playerTransform;
+
 
     private float timeSinceStart;
 
     private ArrayList enemiesStored;
 
-    private Vector2 enemySize;
+    private Vector2 enemyGroundSize;
+    private Vector2 enemyFloatSize;
 
-    private Boolean alreadySpawned;
+
+    private float spawnCooldown;
+
+    private float randomCooldownTimeMin = 3.0f;
+    private float randomCooldownTimeVariance = 2.0f;
+
+
+    private float ground2FloatRatio = 0.6f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +52,10 @@ public class EnemySpawner : MonoBehaviour
 
         enemiesStored = new ArrayList();
 
-        enemySize = new Vector2(0.7f, 0.7f);
+        enemyGroundSize = new Vector2(0.7f, 0.7f);
+        enemyFloatSize = new Vector2(0.5f, 0.5f);
 
-        alreadySpawned = false;
+        spawnCooldown = 0.0f;
     }
 
     // Update is called once per frame
@@ -47,43 +63,61 @@ public class EnemySpawner : MonoBehaviour
     {
         timeSinceStart += Time.deltaTime;
 
-        if (timeSinceStart > 3 && !alreadySpawned)
+        float randomTime = randomCooldownTimeMin + UnityEngine.Random.Range(0.0f, randomCooldownTimeVariance);
+        //spawnEnemiesOneByOne
+        spawnCooldown += Time.deltaTime;
+        if (spawnCooldown > randomTime)
         {
-            SpawnEnemies();
-            alreadySpawned = true;
+            SpawnEnemies(2);
+            spawnCooldown = 0.0f;
+            randomTime = randomCooldownTimeMin + UnityEngine.Random.Range(0.0f, randomCooldownTimeVariance);
         }
     }
 
-    void SpawnEnemies()
+    void SpawnEnemies(int count)
     {
-        int enemyCount = UnityEngine.Random.Range(enemySpawnCountMin, enemySpawnCountMax);
-
         int spawnedCount = 0;
 
         int spawnAttempts = 0;
 
-        while (spawnedCount < enemyCount)
+        while (spawnedCount < count)
         {
+            spawnAttempts++;
+
             float spawnX = UnityEngine.Random.Range(enemySpawnXMin, enemySpawnXMax);
             float spawnY = UnityEngine.Random.Range(enemySpawnYMin, enemySpawnYMax);
 
             Vector2 spawnLocation = new Vector2(spawnX, spawnY);
 
-            UnityEngine.Debug.Log(spawnX + " " + spawnY);
+            float ratio = UnityEngine.Random.Range(0.0f, 1.0f);
 
-            spawnAttempts++;
+            UnityEngine.Debug.Log(ratio);
+
+            Vector2 enemySize;
+
+            Boolean ratioSize = true;
+
+            if (ratio < ground2FloatRatio)
+            {
+                enemySize = enemyGroundSize;
+            }
+            else
+            {
+                enemySize = enemyFloatSize;
+                ratioSize = false;
+            }
 
             if (Physics2D.OverlapBox(spawnLocation, enemySize, 0.0f) == null)
             {
-                GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnLocation, Quaternion.identity, enemyParent);
-
-                spawnedEnemy.GetComponent<Enemy>().playerTransform = playerTransform;
-
-                spawnedEnemy.SetActive(true);
-
-                enemiesStored.Add(spawnedEnemy);
+                if (ratioSize)
+                {
+                    SpawnEnemyGround(spawnLocation);
+                }
+                else
+                {
+                    SpawnEnemyFloat(spawnLocation);
+                }
                 spawnedCount++;
-                spawnAttempts = 0;
             }
 
             if (spawnAttempts > 99)
@@ -91,5 +125,21 @@ public class EnemySpawner : MonoBehaviour
                 spawnedCount++;
             }
         }
+    }
+
+    void SpawnEnemyGround(Vector2 spawnLocation)
+    {
+        GameObject spawnedEnemy = Instantiate(enemyGroundPrefab, spawnLocation, Quaternion.identity, enemyGroundParent);
+        spawnedEnemy.GetComponent<EnemyGround>().playerTransform = playerTransform;
+        spawnedEnemy.SetActive(true);
+        enemiesStored.Add(spawnedEnemy);
+    }
+
+    void SpawnEnemyFloat(Vector2 spawnLocation)
+    {
+        GameObject spawnedEnemy = Instantiate(enemyFloatPrefab, spawnLocation, Quaternion.identity, enemyFloatParent);
+        spawnedEnemy.GetComponent<EnemyFloat>().playerTransform = playerTransform;
+        spawnedEnemy.SetActive(true);
+        enemiesStored.Add(spawnedEnemy);
     }
 }
