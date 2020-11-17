@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - PickUp
+  - Jump
   layers:
   - Default
   - TransparentFX

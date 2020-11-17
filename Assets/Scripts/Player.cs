@@ -67,10 +67,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("hello");
+        // Debug.Log("movement speed",  movementSpeed);
         if (other.gameObject.CompareTag("PickUp")) {
-            Debug.Log("hello");
+            jumpForce *= (float)1.05;
             other.gameObject.SetActive(false);
+            Debug.Log(movementSpeed);
         }
     }
 }
