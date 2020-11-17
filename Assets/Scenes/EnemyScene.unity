@@ -415,6 +415,11 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
+  Health: 0
+  Defense: 0
+  Attack: 0
+  AttackSpeed: 0
+  Luck: 0
 --- !u!61 &1240199566
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -461,7 +466,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1240199568
 SpriteRenderer:
   m_ObjectHideFlags: 0
