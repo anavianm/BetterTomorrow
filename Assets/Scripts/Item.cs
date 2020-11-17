@@ -8,10 +8,10 @@ public class Item
     public string title;
     public string description;
     public Sprite icon;
-    public Dictionary<string, int> stats = new Dictionary<string, int>();
+    public Dictionary<string, double> stats = new Dictionary<string, double>();
     
 
-    public Item(int id, string title, string description, Sprite icon, Dictionary<string,int> stats) {
+    public Item(int id, string title, string description, Dictionary<string,double> stats) {
         this.id = id;
         this.title = title;
         this.description = description;
