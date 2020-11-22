@@ -26,6 +26,9 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyFloatPrefab;
     public Transform enemyFloatParent;
 
+    public GameObject projectilePrefab;
+    public Transform projectileParent;
+
     public Transform playerTransform;
 
 
@@ -139,6 +142,8 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject spawnedEnemy = Instantiate(enemyFloatPrefab, spawnLocation, Quaternion.identity, enemyFloatParent);
         spawnedEnemy.GetComponent<EnemyFloat>().playerTransform = playerTransform;
+        spawnedEnemy.GetComponent<EnemyFloat>().projectilePrefab = projectilePrefab;
+        spawnedEnemy.GetComponent<EnemyFloat>().projectileParent = projectileParent;
         spawnedEnemy.SetActive(true);
         enemiesStored.Add(spawnedEnemy);
     }
