@@ -20,4 +20,13 @@ public class PlayerData : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Projectile")
+        {
+            health += -10;
+            Destroy(collider.gameObject);
+        }
+    }
 }
