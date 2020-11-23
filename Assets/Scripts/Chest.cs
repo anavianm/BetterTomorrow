@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour
+public class Chest : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private Sprite openSprite, closedSprite;
+
+    private bool isOpen;
+    public void Interact()
     {
-        
+        if (isOpen) {
+            StopInteract();
+        } else {
+            isOpen = true;
+            spriteRenderer.sprite = openSprite;
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopInteract()
     {
-        
+
     }
 }
