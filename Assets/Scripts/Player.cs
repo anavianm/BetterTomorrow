@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IInteractable
 {
 
     public List<Item> playerInventory = new List<Item>();
@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float movementSpeed;
     public Rigidbody2D rb;
 
-    public float jumpForce = 20f;
+    public float jumpForce = 10f;
     public Transform feet;
     public LayerMask groundLayers;
     public LayerMask enemyLayer;
@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public float Attack;
     public float AttackSpeed;
     public float Luck;
+
+    private IInteractable interactable;
     
     
     float mouseInput;
@@ -34,6 +36,11 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded()) {
             Jump();
         }
+
+        if (Input.GetButtonDown("Fire1")) {
+           Interact();
+        }
+
 
 
     }
@@ -50,9 +57,9 @@ public class Player : MonoBehaviour
     }
 
     public bool IsGrounded() {
-        Collider2D groundCheck = Physics2D.OverlapCircle(feet.position, 0.5f, groundLayers);
+        Collider2D groundCheck = Physics2D.OverlapCircle(feet.position, 2f, groundLayers);
 
-        Collider2D enemyCheck = Physics2D.OverlapCircle(feet.position, 0.5f, enemyLayer);
+        Collider2D enemyCheck = Physics2D.OverlapCircle(feet.position, 2f, enemyLayer);
 
         if (groundCheck != null || enemyCheck != null) {
             return true;
@@ -65,7 +72,7 @@ public class Player : MonoBehaviour
         playerInventory.Add(pickup);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         // Debug.Log("movement speed",  movementSpeed);
         if (other.gameObject.CompareTag("PickUp")) {
@@ -73,5 +80,35 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
             Debug.Log(movementSpeed);
         }
+
+     
+        if (other.tag == "Interactable") {
+            interactable = other.GetComponent<IInteractable>();
+        }
+        
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+          if (other.tag == "Interactable") {
+              if(interactable != null) {
+                    interactable = other.GetComponent<IInteractable>();
+                    interactable = null;
+              }
+            
+        }
+    }
+
+
+    public void Interact()
+    {
+        if (interactable != null) {
+            interactable.Interact();
+        }
+    }
+
+    public void StopInteract()
+    {
+
     }
 }

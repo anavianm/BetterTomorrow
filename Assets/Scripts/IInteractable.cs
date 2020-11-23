@@ -1,19 +1,11 @@
-﻿// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public inteface IInteractable 
-// {
+public interface IInteractable 
+{
+   void Interact();
 
-
-//     void Interact()
-//     {
-        
-//     }
-
-//     void StopInteract()
-//     {
-        
-//     }
+   void StopInteract();
  
-// }
+}
