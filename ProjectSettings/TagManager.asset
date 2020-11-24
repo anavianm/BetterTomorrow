@@ -8,6 +8,10 @@ TagManager:
   - PickUp
   - Jump
   - Interactable
+  - EnemyGround
+  - EnemyFloat
+  - Projectile
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX
@@ -21,7 +25,7 @@ TagManager:
   - EnemyGround
   - Player
   - EnemyFloat
-  - 
+  - Projectile
   - 
   - 
   - 
