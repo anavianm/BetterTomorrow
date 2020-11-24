@@ -7,7 +7,7 @@ public class PlayerProjectileMovement : MonoBehaviour
     public float velocityX = 0.0f;
     public float velocityY = 0.0f;
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
