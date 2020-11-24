@@ -21,6 +21,8 @@ public class EnemyGround : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        health = 1;
     }
 
     /* physics version
@@ -37,11 +39,30 @@ public class EnemyGround : MonoBehaviour
 
     void Update()
     {
-        int direction = 1;
-        if (playerTransform.position.x < transform.position.x)
+        if (health <= 0)
         {
-            direction = -1;
+            PlayerData.enemiesKilled++;
+            PlayerData.coins++;
+            Destroy(gameObject);
         }
-        transform.position = new Vector2(transform.position.x + (speed * direction * Time.deltaTime), transform.position.y);
+        else
+        {
+            int direction = 1;
+            if (playerTransform.position.x < transform.position.x)
+            {
+                direction = -1;
+            }
+            transform.position = new Vector2(transform.position.x + (speed * direction * Time.deltaTime), transform.position.y);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "PlayerProjectile")
+        {
+            health--;
+
+            Destroy(collider.gameObject);
+        }
     }
 }

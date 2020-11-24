@@ -24,6 +24,8 @@ public class EnemyFloat : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         timeSinceLastShot = 0.0;
+
+        health = 1;
     }
 
     /* physics version
@@ -47,81 +49,90 @@ public class EnemyFloat : MonoBehaviour
 
     void Update()
     {
-        float playerX = playerTransform.position.x;
-        float playerY = playerTransform.position.y;
-        float enemyX = transform.position.x;
-        float enemyY = transform.position.y;
-
-        float distanceToPlayer = Mathf.Sqrt(Mathf.Pow(playerX - enemyX, 2) + Mathf.Pow(playerY - enemyY, 2));
-
-        //if the enemy is closer than 5 units and its been 3 seconds since last shot, shoot again
-        if (distanceToPlayer < 8.0f && timeSinceLastShot > 3.0)
+        if (health <= 0)
         {
-            //calculate projectile velocity so it is a constant speed
-            float speed = 5.0f;
-
-            float y = enemyY - playerY;
-            float x = enemyX - playerX;
-
-            if (x == 0.0f)
-            {
-                x += 0.001f;
-            }
-            if (y == 0.0f)
-            {
-                y += 0.001f;
-            }
-
-            float ratio = x / y;
-
-            float velocityY = Mathf.Abs(Mathf.Sqrt(speed / (ratio + 1.0f)));
-            float velocityX = Mathf.Abs((velocityY * ratio));
-
-            if (y > 0)
-            {
-                velocityY = -velocityY;
-            }
-            if (x > 0)
-            {
-                velocityX = -velocityX;
-            }
-
-            Debug.Log("Ratio: " + ratio + " X VEL: " + velocityX + " Y VEL: " + velocityY);
-
-            ShootProjectile(enemyX, enemyY, velocityX, velocityY);
-            timeSinceLastShot = 0.0f;
+            PlayerData.enemiesKilled++;
+            PlayerData.coins++;
+            Destroy(gameObject);
         }
-
-        timeSinceLastShot += Time.deltaTime;
-
-        //if the enemy is further than 4 units away from the player, then move
-        if (distanceToPlayer > 4.0f || distanceToPlayer < 2.0f)
+        else
         {
-            int directionX = 1;
-            int directionY = 0;
-            if (playerX < enemyX)
+            float playerX = playerTransform.position.x;
+            float playerY = playerTransform.position.y;
+            float enemyX = transform.position.x;
+            float enemyY = transform.position.y;
+
+            float distanceToPlayer = Mathf.Sqrt(Mathf.Pow(playerX - enemyX, 2) + Mathf.Pow(playerY - enemyY, 2));
+
+            //if the enemy is closer than 5 units and its been 3 seconds since last shot, shoot again
+            if (distanceToPlayer < 8.0f && timeSinceLastShot > 3.0)
             {
-                directionX = -1;
-            }
-            if (playerY - enemyY < -2.0f)
-            {
-                directionY = -1;
-            }
-            else if (playerY - enemyY > -1.5f)
-            {
-                directionY = 1;
+                //calculate projectile velocity so it is a constant speed
+                float speed = 5.0f;
+
+                float y = enemyY - playerY;
+                float x = enemyX - playerX;
+
+                if (x == 0.0f)
+                {
+                    x += 0.001f;
+                }
+                if (y == 0.0f)
+                {
+                    y += 0.001f;
+                }
+
+                float ratio = x / y;
+
+                float velocityY = Mathf.Abs(Mathf.Sqrt(speed / (ratio + 1.0f)));
+                float velocityX = Mathf.Abs((velocityY * ratio));
+
+                if (y > 0)
+                {
+                    velocityY = -velocityY;
+                }
+                if (x > 0)
+                {
+                    velocityX = -velocityX;
+                }
+
+                Debug.Log("Ratio: " + ratio + " X VEL: " + velocityX + " Y VEL: " + velocityY);
+
+                ShootProjectile(enemyX, enemyY, velocityX, velocityY);
+                timeSinceLastShot = 0.0f;
             }
 
-            if (distanceToPlayer < 2.0f)
+            timeSinceLastShot += Time.deltaTime;
+
+            //if the enemy is further than 4 units away from the player, then move
+            if (distanceToPlayer > 4.0f || distanceToPlayer < 2.0f)
             {
-                directionX = -directionX;
-                directionY = -directionY;
+                int directionX = 1;
+                int directionY = 0;
+                if (playerX < enemyX)
+                {
+                    directionX = -1;
+                }
+                if (playerY - enemyY < -2.0f)
+                {
+                    directionY = -1;
+                }
+                else if (playerY - enemyY > -1.5f)
+                {
+                    directionY = 1;
+                }
+
+                if (distanceToPlayer < 2.0f)
+                {
+                    directionX = -directionX;
+                    directionY = -directionY;
+                }
+
+                float newPositionX = enemyX + (speedX * directionX * Time.deltaTime);
+                float newPositionY = enemyY + (speedY * directionY * Time.deltaTime);
+
+                transform.position = new Vector2(newPositionX, newPositionY);
             }
-
-            float newPositionX = enemyX + (speedX * directionX * Time.deltaTime);
-            float newPositionY = enemyY + (speedY * directionY * Time.deltaTime);
-
-            transform.position = new Vector2(newPositionX, newPositionY);
         }
     }
 
@@ -131,5 +142,15 @@ public class EnemyFloat : MonoBehaviour
         spawnedProjectile.GetComponent<Projectile>().velocityX = velocityX;
         spawnedProjectile.GetComponent<Projectile>().velocityY = velocityY;
         spawnedProjectile.SetActive(true);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "PlayerProjectile")
+        {
+            health--;
+
+            Destroy(collider.gameObject);
+        }
     }
 }

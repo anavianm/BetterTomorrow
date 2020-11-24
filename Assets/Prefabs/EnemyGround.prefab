@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1427769099077390017}
   m_Layer: 9
   m_Name: EnemyGround
-  m_TagString: Untagged
+  m_TagString: EnemyGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2160e8b4b0740224192dd05d9e2e4081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5229183244785525014}
   health: 0
   damageDealt: 0
   playerTransform: {fileID: 0}

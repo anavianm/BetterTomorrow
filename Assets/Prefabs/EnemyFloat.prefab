@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5446124501084568861}
   m_Layer: 11
   m_Name: EnemyFloat
-  m_TagString: Untagged
+  m_TagString: EnemyFloat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damageDealt: 0
   playerTransform: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  projectileParent: {fileID: 0}
 --- !u!61 &5446124501084568861
 BoxCollider2D:
   m_ObjectHideFlags: 0
