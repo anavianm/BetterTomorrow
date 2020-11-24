@@ -29,6 +29,7 @@ public class Player : MonoBehaviour, IInteractable
 
     private void Start(){
           rb = GetComponent<Rigidbody2D>();
+          
     }
 
     private void Update() {

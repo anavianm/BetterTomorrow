@@ -9,6 +9,7 @@ public class ItemDatabase : MonoBehaviour
 
     private void Awake() 
     {
+        Debug.Log("building");
         BuildDatabase();
     }
 
@@ -26,7 +27,7 @@ public class ItemDatabase : MonoBehaviour
         return items.Find(item => item.id == id);
     }
 
-     public Item getItem(string itemName) 
+    public Item getItem(string itemName) 
     {
         return items.Find(item => item.title == itemName);
     }

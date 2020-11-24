@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpObject : MonoBehaviour
+public class PickUpObject : MonoBehaviour, IInteractable
 {
 
     public static AudioClip objectPickUpSound;
     static AudioSource audioSrc;
+
+    bool isPickedUp;
     // Start is called before the first frame update
     void Start () 
     {
@@ -21,5 +23,17 @@ public class PickUpObject : MonoBehaviour
                 audioSrc.PlayOneShot (objectPickUpSound);
         }     
        
+    }
+
+    public void Interact()
+    {   
+        if(!isPickedUp){
+            // gameObject.setActive = false;
+        }
+    }
+
+    public void StopInteract()
+    {
+
     }
 }
