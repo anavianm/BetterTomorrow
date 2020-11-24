@@ -15,15 +15,17 @@ public class EnemyGround : MonoBehaviour
 
     public Transform playerTransform;
 
-    private float speed = 0.05f;
+    private float speed = 1.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        health = 1;
     }
 
-    // Update is called once per frame
+    /* physics version
     void FixedUpdate()
     {
         int direction = 1;
@@ -32,5 +34,35 @@ public class EnemyGround : MonoBehaviour
             direction = -1;
         }
         rb.velocity = new Vector2(rb.velocity.x + (speed * direction), rb.velocity.y);
+    }
+    */
+
+    void Update()
+    {
+        if (health <= 0)
+        {
+            PlayerData.enemiesKilled++;
+            PlayerData.coins++;
+            Destroy(gameObject);
+        }
+        else
+        {
+            int direction = 1;
+            if (playerTransform.position.x < transform.position.x)
+            {
+                direction = -1;
+            }
+            transform.position = new Vector2(transform.position.x + (speed * direction * Time.deltaTime), transform.position.y);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "PlayerProjectile")
+        {
+            health--;
+
+            Destroy(collider.gameObject);
+        }
     }
 }
