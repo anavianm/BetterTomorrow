@@ -8,7 +8,7 @@ public class AreaMenu : MonoBehaviour
     public void GoGame()
     {
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     void Start() {
