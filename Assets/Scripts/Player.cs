@@ -86,6 +86,8 @@ public class Player : MonoBehaviour, IInteractable
         if (other.tag == "Interactable") {
             interactable = other.GetComponent<IInteractable>();
         }
+
+        
         
     }
 
