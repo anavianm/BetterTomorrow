@@ -16,19 +16,24 @@ public class Player : MonoBehaviour, IInteractable
     public LayerMask enemyLayer;
 
     //Player Stats 
-    public float Health;
-    public float Defense;
-    public float Attack;
-    public float AttackSpeed;
-    public float Luck;
+    public double MaxHealth;
+    public double CurrentHealth;
+    public double Defense;
+    public double Attack;
+    public double AttackSpeed;
+    public double Luck;
+    public double HealthOverTime;
 
     private IInteractable interactable;
     
+    Chest chest;
+    Item currentItem;
     
     float mouseInput;
 
     private void Start(){
           rb = GetComponent<Rigidbody2D>();
+          chest = GameObject.FindGameObjectWithTag("Interactable").GetComponent<Chest>();
           
     }
 
@@ -69,14 +74,16 @@ public class Player : MonoBehaviour, IInteractable
         return false;
     }
 
-    void addToInventory(Item pickup) {
+    public void addToInventory(Item pickup) {
         playerInventory.Add(pickup);
+        AddModifiersToPlayer(pickup);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         // Debug.Log("movement speed",  movementSpeed);
         if (other.gameObject.CompareTag("PickUp")) {
+            
             jumpForce *= (float)1.05;
             other.gameObject.SetActive(false);
             Debug.Log(movementSpeed);
@@ -84,7 +91,11 @@ public class Player : MonoBehaviour, IInteractable
 
      
         if (other.tag == "Interactable") {
+            Debug.Log("here in interactable");
             interactable = other.GetComponent<IInteractable>();
+           
+
+            // Debug.Log("added item to player inventory");
         }
 
         
@@ -102,12 +113,25 @@ public class Player : MonoBehaviour, IInteractable
         }
     }
 
+    private void AddModifiersToPlayer(Item pickup)
+    {
+           if(pickup.stats.ContainsKey("HP")) {
+               Debug.Log("added HP");
+               MaxHealth *= pickup.stats["HP"];
+           }else if (pickup.stats.ContainsKey("Heal")) {
+               HealthOverTime += pickup.stats["Heal"];
+           }
+    }
+
 
     public void Interact()
     {
         if (interactable != null) {
             interactable.Interact();
+            // AddModifiersToPlayer();
         }
+
+        
     }
 
     public void StopInteract()
