@@ -1,4 +1,5 @@
-- path: Assets/Scenes/Test1.unity
+sceneSetups:
+- path: Assets/Scenes/Max_Chests.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
