@@ -14,8 +14,9 @@ public class Chest : MonoBehaviour, IInteractable
     public Transform chest;
 
     ItemDatabase db;
+    Player player;
 
-    Item item;
+    public Item item;
 
     GameObject myObject;
     GameObject temp;
@@ -26,10 +27,14 @@ public class Chest : MonoBehaviour, IInteractable
     Transform pickupParent;
 
     Vector3 mousePos;
+
+
+
     
 
     void Start() {
         db = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemDatabase>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -49,7 +54,9 @@ public class Chest : MonoBehaviour, IInteractable
             Debug.Log(item.title);
             myObject = new GameObject(item.title);
             temp = Instantiate(myObject);
-            temp.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 10));
+            temp.SetActive(true);
+            temp.transform.position = new Vector2(0,0);
+            player.addToInventory(item);
 
         }
 
@@ -57,6 +64,8 @@ public class Chest : MonoBehaviour, IInteractable
 
     public Item getItemFromChest()
     {
+        Debug.Log("in getItemFromChest");
+        Debug.Log(item.title);
         return item;
     }
 
