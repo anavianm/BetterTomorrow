@@ -27,8 +27,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064712498464398645}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7493095, y: -2.954624, z: -21.262611}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,8 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damageDealt: 0
   playerTransform: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  projectileParent: {fileID: 0}
+  gameBoundaryXMin: -30
+  gameBoundaryXMax: 30
+  gameBoundaryYMin: -30
+  gameBoundaryYMax: 30
 --- !u!61 &5446124501084568861
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -132,6 +132,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemyGround(Vector2 spawnLocation)
     {
+        UnityEngine.Debug.Log("Spawning Enemy GROUND at " + spawnLocation);
         GameObject spawnedEnemy = Instantiate(enemyGroundPrefab, spawnLocation, Quaternion.identity, enemyGroundParent);
         spawnedEnemy.GetComponent<EnemyGround>().playerTransform = playerTransform;
         spawnedEnemy.SetActive(true);
@@ -140,6 +141,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemyFloat(Vector2 spawnLocation)
     {
+        UnityEngine.Debug.Log("Spawning Enemy FLOAT at " + spawnLocation);
         GameObject spawnedEnemy = Instantiate(enemyFloatPrefab, spawnLocation, Quaternion.identity, enemyFloatParent);
         spawnedEnemy.GetComponent<EnemyFloat>().playerTransform = playerTransform;
         spawnedEnemy.SetActive(true);
@@ -148,6 +150,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemyLarge(Vector2 spawnLocation)
     {
+        UnityEngine.Debug.Log("Spawning Enemy LARGE at " + spawnLocation);
         GameObject spawnedEnemy = Instantiate(enemyLargePrefab, spawnLocation, Quaternion.identity, enemyLargeParent);
         spawnedEnemy.GetComponent<EnemyLarge>().playerTransform = playerTransform;
         spawnedEnemy.SetActive(true);

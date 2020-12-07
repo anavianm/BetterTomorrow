@@ -31,7 +31,6 @@ public class PlayerData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("HEALTH: " + health + "COINS: " + coins + "ENEMIES KILLED: " + enemiesKilled);
         if (Input.GetMouseButtonDown(0) && timeSinceLastShot > shotCooldown)
         {
             ShootProjectile();

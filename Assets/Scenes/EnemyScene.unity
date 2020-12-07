@@ -689,6 +689,8 @@ MonoBehaviour:
   enemyGroundParent: {fileID: 262978271}
   enemyFloatPrefab: {fileID: 496008042}
   enemyFloatParent: {fileID: 1840966291}
+  enemyLargePrefab: {fileID: 1157421302849261919}
+  enemyLargeParent: {fileID: 907253899}
   playerTransform: {fileID: 1240199569}
 --- !u!4 &1749388219
 Transform:
@@ -921,6 +923,12 @@ PrefabInstance:
 --- !u!4 &1157421302849261918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7180636749037443351, guid: 3db8b72a772031144bf9800dbd9d7f37,
+    type: 3}
+  m_PrefabInstance: {fileID: 1157421302849261917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1157421302849261919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1674818639239443887, guid: 3db8b72a772031144bf9800dbd9d7f37,
     type: 3}
   m_PrefabInstance: {fileID: 1157421302849261917}
   m_PrefabAsset: {fileID: 0}

@@ -17,6 +17,11 @@ public class EnemyGround : MonoBehaviour
 
     private float speed = 1.0f;
 
+    public float gameBoundaryXMin = -30.0f;
+    public float gameBoundaryXMax = 30.0f;
+    public float gameBoundaryYMin = -30.0f;
+    public float gameBoundaryYMax = 30.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,10 +44,16 @@ public class EnemyGround : MonoBehaviour
 
     void Update()
     {
+        float xPosition = transform.position.x;
+        float yPosition = transform.position.y;
         if (health <= 0)
         {
             PlayerData.enemiesKilled++;
             PlayerData.coins++;
+            Destroy(gameObject);
+        }
+        else if (xPosition > gameBoundaryXMax || xPosition < gameBoundaryXMin || yPosition > gameBoundaryYMax || yPosition < gameBoundaryYMin)
+        {
             Destroy(gameObject);
         }
         else
