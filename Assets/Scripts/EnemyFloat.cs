@@ -82,10 +82,10 @@ public class EnemyFloat : MonoBehaviour
                     y += 0.001f;
                 }
 
-                float ratio = x / y;
+                float ratio = Mathf.Abs(x / y);
 
-                float velocityY = Mathf.Abs(Mathf.Sqrt(speed / (ratio + 1.0f)));
-                float velocityX = Mathf.Abs((velocityY * ratio));
+                float velocityY = Mathf.Sqrt(speed / (ratio + 1.0f));
+                float velocityX = velocityY * ratio;
 
                 if (y > 0)
                 {

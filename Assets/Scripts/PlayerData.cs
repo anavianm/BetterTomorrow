@@ -51,7 +51,7 @@ public class PlayerData : MonoBehaviour
 
     void ShootProjectile()
     {
-        Vector3 mousePos = Input.mousePosition;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         float mouseX = mousePos[0];
         float mouseY = mousePos[1];
@@ -76,10 +76,12 @@ public class PlayerData : MonoBehaviour
             y += 0.001f;
         }
 
-        float ratio = x / y;
+        float ratio = Mathf.Abs(x / y);
 
-        float velocityY = Mathf.Abs(Mathf.Sqrt(speed / (ratio + 1.0f)));
-        float velocityX = Mathf.Abs((velocityY * ratio));
+        Debug.Log("X: " + x + " Y: " + y + " Ratio: " + ratio);
+
+        float velocityY = Mathf.Sqrt(speed / (ratio + 1.0f));
+        float velocityX = velocityY * ratio;
 
         if (y > 0)
         {
@@ -90,9 +92,13 @@ public class PlayerData : MonoBehaviour
             velocityX = -velocityX;
         }
 
+        Debug.Log("VELOCITYX: " + velocityX + " VelocityY: " + velocityY);
+
         GameObject spawnedProjectile = Instantiate(playerProjectilePrefab, new Vector2(playerX, playerY), Quaternion.identity, playerProjectileParent);
         spawnedProjectile.GetComponent<PlayerProjectileMovement>().velocityX = velocityX;
         spawnedProjectile.GetComponent<PlayerProjectileMovement>().velocityY = velocityY;
+        //spawnedProjectile.GetComponent<PlayerProjectileMovement>().rb.velocity = new Vector2(velocityX, velocityY);
         spawnedProjectile.SetActive(true);
     }
+
 }
