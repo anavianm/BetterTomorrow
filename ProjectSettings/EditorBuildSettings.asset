@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 8137bd66f5c9f194f950eb28c35c0a95
+  - enabled: 1
+    path: Assets/Scenes/Max_Chests.unity
+    guid: f046f2773c7e8004ba070dc38c01a199
   m_configObjects: {}
