@@ -21,6 +21,8 @@ public class Chest : MonoBehaviour, IInteractable
     GameObject myObject;
     GameObject temp;
 
+    public GameObject water, friendship_bracelet, food, magnifying_glass;
+
     Vector2 objectPlacement = new Vector2(0,0);
     Transform objectTransform;
 
@@ -52,7 +54,16 @@ public class Chest : MonoBehaviour, IInteractable
             spriteRenderer.sprite = openSprite;
             item = db.getRandomItem();
             Debug.Log(item.title);
-            myObject = new GameObject(item.title);
+            if(item.title == "Magnifying Glass"){
+                Instantiate(magnifying_glass, new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y), Quaternion.identity);
+            }else if(item.title == "Friendship bracelet"){
+                Instantiate(friendship_bracelet, new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y), Quaternion.identity);
+            }else if(item.title == "Food"){
+                Instantiate(food, new Vector2(gameObject.transform.position.x + 5, gameObject.transform.position.y), Quaternion.identity);
+            }else if(item.title == "Water"){
+                Instantiate(water, new Vector2(gameObject.transform.position.x + 5, gameObject.transform.position.y) , Quaternion.identity);
+            }
+
             temp = Instantiate(myObject);
             temp.SetActive(true);
             temp.transform.position = new Vector2(0,0);
