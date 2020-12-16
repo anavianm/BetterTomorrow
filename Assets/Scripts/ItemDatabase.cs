@@ -62,10 +62,22 @@ public class ItemDatabase : MonoBehaviour
                 {"Heal", 0.05}
             }),
 
-            new Item(4, "Friendship bracelet", "Hurts anxiety monster's ability to slow you down by 5%", 
+            new Item(4, "Medicine", "+50HP", 
             new Dictionary<string, double>{
-                {"reverseSlow", 0.05}
-            })
+                {"Health", 50}
+            }),
+
+            new Item(5, "Cigarettes", "Takes 50% of HP but gives more attack", 
+            new Dictionary<string, double>{
+                {"HP", 0.5},
+                {"Attack", 0.5}
+            }),
+
+            new Item(6, "Inhaler", "Speed Increase", 
+            new Dictionary<string, double>{
+                {"Speed", 0.05}
+            }),
+
         };
     }
     // Start is called before the first frame update
