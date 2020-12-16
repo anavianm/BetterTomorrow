@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// using UnityEngine.Events;
+
 
 public class PlayerControl : MonoBehaviour, IInteractable
 {
+
+	public Animator animator;
+    // public UnityEvent OnLandEvent;
 
     public List<Item> playerInventory = new List<Item>();
 
@@ -32,6 +37,8 @@ public class PlayerControl : MonoBehaviour, IInteractable
     private void Start(){
           rb = GetComponent<Rigidbody2D>();
           
+          // if (OnLandEvent == null)
+          //   OnLandEvent = new UnityEvent();
     }
 
 
@@ -39,8 +46,11 @@ public class PlayerControl : MonoBehaviour, IInteractable
     private void Update() {
         mouseInput = Input.GetAxisRaw("Horizontal");
 
+        animator.SetFloat("Speed", Mathf.Abs(mouseInput));
+
         if (Input.GetButtonDown("Jump") && IsGrounded()) {
             Jump();
+            animator.SetBool("isJumping", true);
         }
 
         if (Input.GetButtonDown("Fire1")) {
@@ -81,10 +91,14 @@ public class PlayerControl : MonoBehaviour, IInteractable
 
         if (groundCheck != null || enemyCheck != null) {
             return true;
-        }
+        } 
 
         return false;
     }
+
+    // public void OnLanding() {
+    //     animator.SetBool("isJumping", false);
+    // }
 
     void addToInventory(Item pickup) {
         playerInventory.Add(pickup);
