@@ -11,6 +11,11 @@ public class EnemyFloat : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform projectileParent;
 
+    public float gameBoundaryXMin = -30.0f;
+    public float gameBoundaryXMax = 30.0f;
+    public float gameBoundaryYMin = -30.0f;
+    public float gameBoundaryYMax = 30.0f;
+
     private float speedX = 1.0f;
     private float speedY = 0.7f;
 
@@ -49,10 +54,16 @@ public class EnemyFloat : MonoBehaviour
 
     void Update()
     {
+        float xPosition = transform.position.x;
+        float yPosition = transform.position.y;
         if (health <= 0)
         {
             PlayerData.enemiesKilled++;
             PlayerData.coins++;
+            Destroy(gameObject);
+        }
+        else if (xPosition > gameBoundaryXMax || xPosition < gameBoundaryXMin || yPosition > gameBoundaryYMax || yPosition < gameBoundaryYMin)
+        {
             Destroy(gameObject);
         }
         else
@@ -82,10 +93,10 @@ public class EnemyFloat : MonoBehaviour
                     y += 0.001f;
                 }
 
-                float ratio = x / y;
+                float ratio = Mathf.Abs(x / y);
 
-                float velocityY = Mathf.Abs(Mathf.Sqrt(speed / (ratio + 1.0f)));
-                float velocityX = Mathf.Abs((velocityY * ratio));
+                float velocityY = Mathf.Sqrt(speed / (ratio + 1.0f));
+                float velocityX = velocityY * ratio;
 
                 if (y > 0)
                 {

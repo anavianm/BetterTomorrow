@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Security.Cryptography;
-using System.Threading;
 using UnityEngine;
 
-public class EnemyGround : MonoBehaviour
+public class EnemyLarge : MonoBehaviour
 {
-    private Rigidbody2D rb;
-
     public int health;
-    public int damageDealt;
 
     public Transform playerTransform;
 
-    private float speed = 1.0f;
+    private Rigidbody2D rb;
 
     public float gameBoundaryXMin = -30.0f;
     public float gameBoundaryXMax = 30.0f;
     public float gameBoundaryYMin = -30.0f;
     public float gameBoundaryYMax = 30.0f;
+
+    private float timeBetweenJumps = 3.0f;
+    private float timeSinceLastJump;
 
     // Start is called before the first frame update
     void Start()
@@ -28,20 +24,11 @@ public class EnemyGround : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         health = 1;
+
+        timeSinceLastJump = 0.0f;
     }
 
-    /* physics version
-    void FixedUpdate()
-    {
-        int direction = 1;
-        if (playerTransform.position.x < transform.position.x)
-        {
-            direction = -1;
-        }
-        rb.velocity = new Vector2(rb.velocity.x + (speed * direction), rb.velocity.y);
-    }
-    */
-
+    // Update is called once per frame
     void Update()
     {
         float xPosition = transform.position.x;
@@ -58,13 +45,28 @@ public class EnemyGround : MonoBehaviour
         }
         else
         {
-            int direction = 1;
-            if (playerTransform.position.x < transform.position.x)
-            {
-                direction = -1;
-            }
-            transform.position = new Vector2(transform.position.x + (speed * direction * Time.deltaTime), transform.position.y);
+            //donothingfornow
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (timeSinceLastJump >= timeBetweenJumps)
+        {
+            Jump();
+            timeSinceLastJump = 0.0f;
+        }
+    }
+
+    void Jump()
+    {
+        int direction = 1;
+        if (playerTransform.position.x < transform.position.x)
+        {
+            direction = -1;
+        }
+
+        rb.velocity = new Vector2(direction * 2.0f, 1.0f);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
