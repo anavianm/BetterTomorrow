@@ -12,6 +12,8 @@ TagManager:
   - EnemyFloat
   - Projectile
   - PlayerProjectile
+  - EnemyLarge
+  - GameHandler
   layers:
   - Default
   - TransparentFX
