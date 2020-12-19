@@ -127,7 +127,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 81f0faeb3a9c7470c858236ea0f6e41e, type: 2}
+  m_Motion: {fileID: 7400000, guid: d9428d0dc2add3041b410f94c1fcad54, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -174,13 +174,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isJumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -233,7 +233,7 @@ AnimatorStateMachine:
     m_Position: {x: 250, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2129913211817651529}
-    m_Position: {x: 250, y: 160, z: 0}
+    m_Position: {x: 260, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4544539250439645554}
     m_Position: {x: 530, y: 30, z: 0}
@@ -270,7 +270,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2c198ee0514c04ed9a0ece4bb14dfe8d, type: 2}
+  m_Motion: {fileID: 7400000, guid: f4c607e5380584e4ab488fb2957447e9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

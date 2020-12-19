@@ -6,10 +6,9 @@ public class EnemyFloat : MonoBehaviour
 {
     public int health;
 
+	public GameObject projectilePrefab;
+	public Transform projectileParent;
     public Transform playerTransform;
-
-    public GameObject projectilePrefab;
-    public Transform projectileParent;
 
     public float gameBoundaryXMin = -30.0f;
     public float gameBoundaryXMax = 30.0f;
@@ -27,7 +26,8 @@ public class EnemyFloat : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-
+		playerTransform = GameObject.FindWithTag("Player").transform;
+		projectileParent = GameObject.FindWithTag("ProjectileParent").transform;
         timeSinceLastShot = 0.0;
 
         health = 1;

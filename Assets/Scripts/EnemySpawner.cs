@@ -26,8 +26,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyFloatPrefab;
     public Transform enemyFloatParent;
 
-    public GameObject enemyLargePrefab;
-    public Transform enemyLargeParent;
+    //public GameObject enemyLargePrefab;
+    //public Transform enemyLargeParent;
 
     public Transform playerTransform;
 
@@ -148,12 +148,13 @@ public class EnemySpawner : MonoBehaviour
         enemiesStored.Add(spawnedEnemy);
     }
 
-    void SpawnEnemyLarge(Vector2 spawnLocation)
-    {
-        UnityEngine.Debug.Log("Spawning Enemy LARGE at " + spawnLocation);
-        GameObject spawnedEnemy = Instantiate(enemyLargePrefab, spawnLocation, Quaternion.identity, enemyLargeParent);
-        spawnedEnemy.GetComponent<EnemyLarge>().playerTransform = playerTransform;
-        spawnedEnemy.SetActive(true);
-        enemiesStored.Add(spawnedEnemy);
-    }
+//    void SpawnEnemyLarge(Vector2 spawnLocation)
+//    {
+//        UnityEngine.Debug.Log("Spawning Enemy LARGE at " + spawnLocation);
+//        GameObject spawnedEnemy = Instantiate(enemyLargePrefab, spawnLocation, Quaternion.identity, enemyLargeParent);
+//        spawnedEnemy.GetComponent<EnemyLarge>().playerTransform = playerTransform;
+//        spawnedEnemy.SetActive(true);
+//        enemiesStored.Add(spawnedEnemy);
+//    }
+
 }
