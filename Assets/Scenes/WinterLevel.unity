@@ -7725,6 +7725,16 @@ PrefabInstance:
       propertyPath: followTarget
       value: 
       objectReference: {fileID: 1902153937}
+    - target: {fileID: 1007613987048022971, guid: 7634497b92e7c2e4bb03990a03ccbbb6,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007613987048022971, guid: 7634497b92e7c2e4bb03990a03ccbbb6,
+        type: 3}
+      propertyPath: maxDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1007613987048022973, guid: 7634497b92e7c2e4bb03990a03ccbbb6,
         type: 3}
       propertyPath: m_Name
