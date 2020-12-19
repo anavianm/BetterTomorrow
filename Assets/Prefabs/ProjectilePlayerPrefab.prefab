@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6511354947162996035}
   - component: {fileID: 1130104728424596854}
   m_Layer: 0
-  m_Name: ProjectilePlayer 1
+  m_Name: ProjectilePlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,6 +85,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityX: 0
   velocityY: 0
+  speed: 5
+  life: 10
 --- !u!1 &7893446548521424071
 GameObject:
   m_ObjectHideFlags: 0

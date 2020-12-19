@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6590475922671734050}
   - component: {fileID: 7157922113595209816}
-  - component: {fileID: 417689099509958531}
+  - component: {fileID: 8305328067648620442}
   - component: {fileID: 3583950545487556063}
   m_Layer: 13
   m_Name: EnemyGround
@@ -136,8 +136,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &417689099509958531
-BoxCollider2D:
+--- !u!58 &8305328067648620442
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -149,19 +149,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.46, y: 3.11}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.48}
   serializedVersion: 2
-  m_Size: {x: 4.5, y: 3.95}
-  m_EdgeRadius: 0
+  m_Radius: 1.73
 --- !u!114 &3583950545487556063
 MonoBehaviour:
   m_ObjectHideFlags: 0

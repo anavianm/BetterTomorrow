@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour, IInteractable
 {
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
+	public GameObject ChestOpen;
+	public GameObject ChestClosed;
+	public GameObject messageToOpen;
 
-    [SerializeField]
-    private Sprite openSprite, closedSprite;
+    //[SerializeField]
+    //private SpriteRenderer spriteRenderer;
+
+    //[SerializeField]
+    //private Sprite openSprite, closedSprite;
     private bool isOpen;
 
-    public Transform chest;
+    //public Transform chest;
 
     ItemDatabase db;
     Player player;
@@ -31,12 +35,12 @@ public class Chest : MonoBehaviour, IInteractable
     Vector3 mousePos;
 
 
-
-    
-
     void Start() {
         db = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemDatabase>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		ChestOpen.SetActive(false);
+		ChestClosed.SetActive(true);
+		messageToOpen.SetActive(false);
     }
 
     void Update()
@@ -44,14 +48,26 @@ public class Chest : MonoBehaviour, IInteractable
         mousePos = Input.mousePosition;
     }
 
+
+	public void TurnOnMessage(){
+		messageToOpen.SetActive(true);
+	}
+
+	public void TurnOffMessage(){
+		messageToOpen.SetActive(false);
+	}
+
+
     public void Interact()
-    
     {
         if (isOpen) {
             StopInteract();
         } else {
             isOpen = true;
-            spriteRenderer.sprite = openSprite;
+            //spriteRenderer.sprite = openSprite;
+			ChestOpen.SetActive(true);
+			ChestClosed.SetActive(false);
+			messageToOpen.SetActive(false);
             item = db.getRandomItem();
             Debug.Log(item.title);
             if(item.title == "Magnifying Glass"){

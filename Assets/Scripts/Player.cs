@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour, IInteractable
 {
 
+	public Animator animator;
+	private bool m_FacingRight = true; 
+
     public List<Item> playerInventory = new List<Item>();
 
     public float movementSpeed;
@@ -32,30 +35,44 @@ public class Player : MonoBehaviour, IInteractable
     float mouseInput;
 
     private void Start(){
-          rb = GetComponent<Rigidbody2D>();
-          chest = GameObject.FindGameObjectWithTag("Interactable").GetComponent<Chest>();
+		animator = gameObject.GetComponentInChildren<Animator>();  
+		rb = GetComponent<Rigidbody2D>();
+        chest = GameObject.FindGameObjectWithTag("Interactable").GetComponent<Chest>();
           
     }
 
     private void Update() {
         mouseInput = Input.GetAxisRaw("Horizontal");
+
+		animator.SetFloat("Speed", Mathf.Abs(mouseInput));
+
         if (Input.GetButtonDown("Jump") && IsGrounded()) {
             Jump();
+			animator.SetBool("isJumping", true);
         }
 
         if (Input.GetButtonDown("Fire1")) {
            Interact();
         }
-
-
-
     }
 
     private void FixedUpdate() {
         Vector2 movement = new Vector2(mouseInput * movementSpeed, rb.velocity.y);
 
         rb.velocity = movement;
+
+		if (Input.GetAxisRaw("Horizontal") > 0 && !m_FacingRight) {
+			//Debug.Log("left");
+			//left;
+			Flip();
+		} else if (Input.GetAxisRaw("Horizontal") < 0 && m_FacingRight) {
+			//right
+			//Debug.Log("right");
+			Flip();
+		}
     }
+
+
     void Jump() {
         Vector2 movement = new Vector2(rb.velocity.x, jumpForce);
 
@@ -69,8 +86,8 @@ public class Player : MonoBehaviour, IInteractable
 
         if (groundCheck != null || enemyCheck != null) {
             return true;
+			Debug.Log("I can jump now!");
         }
-
         return false;
     }
 
@@ -93,28 +110,24 @@ public class Player : MonoBehaviour, IInteractable
         if (other.tag == "Interactable") {
             Debug.Log("here in interactable");
             interactable = other.GetComponent<IInteractable>();
-           
-
+			//assumes all intractibles are chests:
+			other.GetComponent<Chest>().TurnOnMessage();
             // Debug.Log("added item to player inventory");
         }
-
-        
-        
     }
 
-    public void OnTriggerExit2D(Collider2D other)
-    {
+    public void OnTriggerExit2D(Collider2D other){
           if (other.tag == "Interactable") {
               if(interactable != null) {
                     interactable = other.GetComponent<IInteractable>();
                     interactable = null;
+				//assumes all intractibles are chests:
+				other.GetComponent<Chest>().TurnOffMessage();
               }
-            
         }
     }
 
-    private void AddModifiersToPlayer(Item pickup)
-    {
+    private void AddModifiersToPlayer(Item pickup){
            if(pickup.stats.ContainsKey("HP")) {
                Debug.Log("added HP");
                MaxHealth *= pickup.stats["HP"];
@@ -124,18 +137,26 @@ public class Player : MonoBehaviour, IInteractable
     }
 
 
-    public void Interact()
-    {
+    public void Interact(){
         if (interactable != null) {
             interactable.Interact();
             // AddModifiersToPlayer();
         }
-
-        
     }
 
-    public void StopInteract()
-    {
+    public void StopInteract(){
 
     }
+
+
+	private void Flip(){
+		// Switch the way the player is labelled as facing.
+		m_FacingRight = !m_FacingRight;
+
+		// Multiply the player's x local scale by -1.
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1007613987048022969}
   - component: {fileID: 1007613987048022970}
   - component: {fileID: 1007613987048022971}
-  - component: {fileID: 1007613987048022972}
+  - component: {fileID: 2957266770362932993}
   m_Layer: 0
   m_Name: AnxietyCompanion
   m_TagString: Untagged
@@ -98,7 +98,7 @@ MonoBehaviour:
   followTarget: {fileID: 0}
   maxDistance: 0
   moveSpeed: 0
---- !u!95 &1007613987048022972
+--- !u!95 &2957266770362932993
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

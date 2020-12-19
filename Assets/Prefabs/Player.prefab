@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4169146237778013944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3609505009030102945}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3609505009030102945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169146237778013944}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.99, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8818600396538907056}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8818600395148127170
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,8 +54,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8818600395148127170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.3, z: 0}
-  m_LocalScale: {x: 0.7196176, y: 0.7196176, z: 0.7196176}
+  m_LocalPosition: {x: 0, y: -3.43, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8818600396538907056}
   m_RootOrder: 1
@@ -66,6 +96,7 @@ Transform:
   m_Children:
   - {fileID: 8818600396207444352}
   - {fileID: 8818600395148127173}
+  - {fileID: 3609505009030102945}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,7 +154,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8818600395563376827}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -144,16 +175,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4be0f127a6fb1f428c944c7e792502c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   movementSpeed: 25
   rb: {fileID: 8818600395563376768}
   jumpForce: 10
   feet: {fileID: 8818600395148127173}
   groundLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   MaxHealth: 0
   CurrentHealth: 0
   Defense: 0
@@ -173,8 +205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278207b8a0fbfe64e952b8c39213a6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerProjectilePrefab: {fileID: 0}
+  playerProjectilePrefab: {fileID: 411551502554870836, guid: c059616c3e5ab6645a24c6ee3bdde1f6,
+    type: 3}
   playerProjectileParent: {fileID: 0}
+  FirePoint: {fileID: 3609505009030102945}
 --- !u!114 &8818600395563376829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +228,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8818600395563376827}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29983a268ac80491985213c0d2e038f7, type: 3}
   m_Name: 

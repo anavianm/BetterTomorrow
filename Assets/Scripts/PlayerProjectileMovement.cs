@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerProjectileMovement : MonoBehaviour
 {
-    public float velocityX = 0.0f;
-    public float velocityY = 0.0f;
+    public float velocityX = 0f;
+    public float velocityY = 0f;
+	public float speed = 5.0f;
+
+	public float life = 10f;
+	private float lifetime = 0;
 
     Rigidbody2D rb;
 
@@ -17,14 +21,19 @@ public class PlayerProjectileMovement : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x > 20.0f || transform.position.x < -20.0f || transform.position.y > 20.0f || transform.position.y < -20.0f)
-        {
-            Destroy(gameObject);
-        }
+        //if (transform.position.x > 100.0f || transform.position.x < -100.0f || transform.position.y > 100.0f || transform.position.y < -100.0f)
+        //{
+       //     Destroy(gameObject);
+       // }
     }
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(velocityX, velocityY);
+        rb.velocity = new Vector2(velocityX*speed, velocityY*speed);
+
+		lifetime += 0.1f;
+		if (lifetime >= life){
+			Destroy(gameObject);
+		} 
     }
 }

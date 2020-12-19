@@ -7,6 +7,7 @@ public class PlayerData : MonoBehaviour
 
     public GameObject playerProjectilePrefab;
     public Transform playerProjectileParent;
+	public Transform FirePoint;
 
 
     public static int health;
@@ -22,6 +23,7 @@ public class PlayerData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		playerProjectileParent = GameObject.FindGameObjectWithTag("ProjectilePlayerParent").transform;
         health = 100;
         coins = 0;
         enemiesKilled = 0;
@@ -93,8 +95,10 @@ public class PlayerData : MonoBehaviour
 
         Debug.Log("VELOCITYX: " + velocityX + " VelocityY: " + velocityY);
 
-        GameObject spawnedProjectile = Instantiate(playerProjectilePrefab, new Vector2(playerX, playerY), Quaternion.identity, playerProjectileParent);
-        spawnedProjectile.GetComponent<PlayerProjectileMovement>().velocityX = velocityX;
+        //GameObject spawnedProjectile = Instantiate(playerProjectilePrefab, new Vector2(playerX, playerY), Quaternion.identity, playerProjectileParent);
+		GameObject spawnedProjectile = Instantiate(playerProjectilePrefab, new Vector2(FirePoint.position.x, FirePoint.position.y), Quaternion.identity, playerProjectileParent);
+
+		spawnedProjectile.GetComponent<PlayerProjectileMovement>().velocityX = velocityX;
         spawnedProjectile.GetComponent<PlayerProjectileMovement>().velocityY = velocityY;
         //spawnedProjectile.GetComponent<PlayerProjectileMovement>().rb.velocity = new Vector2(velocityX, velocityY);
         spawnedProjectile.SetActive(true);

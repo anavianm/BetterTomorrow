@@ -54,7 +54,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8777857499634325503
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -94,10 +94,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  playerTransform: {fileID: 0}
   projectilePrefab: {fileID: 7570587811911278083, guid: 59bd3d7f344b5f14ab96dee1d2a8d5dc,
     type: 3}
   projectileParent: {fileID: 0}
+  playerTransform: {fileID: 0}
   gameBoundaryXMin: -30
   gameBoundaryXMax: 30
   gameBoundaryYMin: -30
