@@ -8,7 +8,7 @@ public class ScreenBottomRespawn : MonoBehaviour
 	public GameHandler gameHandler;
 	public Transform playerPos;
 	public Transform playerSpawn;
-	public double damage = 10;
+	public float damage = 10;
 
 
     // Start is called before the first frame update

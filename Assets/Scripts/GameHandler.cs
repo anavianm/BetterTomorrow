@@ -8,16 +8,17 @@ public class GameHandler : MonoBehaviour{
 
 
 	//Player Stats 
-	public static double MaxHealth = 100;
-	public static double CurrentHealth = 100;
-	private static double Defense;
-	private static double Attack;
-	private static double AttackSpeed;
-	private static double Luck;
-	public static double HealthOverTime;
-	public static double HealingRate;
+	public static float MaxHealth = 100;
+	public static float CurrentHealth = 100;
+	private static float Defense;
+	private static float Attack;
+	private static float AttackSpeed;
+	private static float Luck;
+	public static float HealthOverTime;
+	public static float HealingRate;
 
 	public GameObject healthText;
+	public RectTransform healthbar;
 	private string sceneName; 
 
 
@@ -48,7 +49,7 @@ public class GameHandler : MonoBehaviour{
 	}
 
 
-	public void TakeDamage(double damage){
+	public void TakeDamage(float damage){
 		CurrentHealth -= damage;
 		UpdateHealth();
 	}
@@ -56,7 +57,12 @@ public class GameHandler : MonoBehaviour{
 
 	public void UpdateHealth(){
 		Text healthTextB = healthText.GetComponent<Text>();
-		healthTextB.text =  CurrentHealth + " \ " + MaxHealth;
+
+		// healthTextB.text =  CurrentHealth + " \ " + MaxHealth;
+	}
+
+	public void UpdateHealthBar(){
+		healthbar.sizeDelta = new Vector2(CurrentHealth * 2, healthbar.sizeDelta.y);
 	}
 
 
