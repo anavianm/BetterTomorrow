@@ -10,6 +10,11 @@ public class FollowPlayer : MonoBehaviour
     public float maxDistance;
     public float moveSpeed;
 
+    void Start()
+    {
+        GameObject followTargetTemp = GameObject.FindWithTag("Player");
+        followTarget = followTargetTemp.transform;
+    }
 
     void Update()
     {
@@ -19,4 +24,6 @@ public class FollowPlayer : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, followTarget.position, moveSpeed * Time.deltaTime);
         }
     }
+
+
 }
