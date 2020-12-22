@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class VolumeValueChange : MonoBehaviour
 {
@@ -13,11 +15,36 @@ public class VolumeValueChange : MonoBehaviour
 
     void Update() {
     	audioSrc.volume = musicVolume;
+
+    	// Stop Main Music when WinterLevel
+    	if (SceneManager.GetActiveScene().name == "WinterLevel")
+         {
+             Destroy(this.gameObject);
+         }
+
+
     }
 
     public void SetVolume(float vol) {
     	musicVolume = vol;
     }
 
+    // private AudioSource _audioSource;
+     private void Awake()
+     {
+         DontDestroyOnLoad(transform.gameObject);
+         // audioSrc = GetComponent<AudioSource>();
+     }
+ 
+     public void PlayMusic()
+     {
+         if (audioSrc.isPlaying) return;
+         audioSrc.Play();
+     }
+ 
+     public void StopMusic()
+     {
+         audioSrc.Stop();
+     }
 
 }
