@@ -17,10 +17,10 @@ public class VolumeValueChange : MonoBehaviour
     	audioSrc.volume = musicVolume;
 
     	// Stop Main Music when WinterLevel
-    	if (SceneManager.GetActiveScene().name == "WinterLevel")
-         {
-             Destroy(this.gameObject);
-         }
+    	// if (SceneManager.GetActiveScene().name == "WinterLevel")
+        //  {
+        //      Destroy(this.gameObject);
+        //  }
 
 
     }
