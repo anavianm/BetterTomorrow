@@ -7530,7 +7530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2001796173
 Transform:
   m_ObjectHideFlags: 0
@@ -7989,6 +7989,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8818600395563376831, guid: 0027f943216fa3c4d8a45a30996d7dab,
+        type: 3}
+      propertyPath: jumpForce
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8818600396538907056, guid: 0027f943216fa3c4d8a45a30996d7dab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8044,5 +8049,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8818600395563376826, guid: 0027f943216fa3c4d8a45a30996d7dab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0027f943216fa3c4d8a45a30996d7dab, type: 3}
