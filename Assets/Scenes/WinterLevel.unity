@@ -10229,6 +10229,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 1242276482863921984, guid: 806973c832ecd3b4d8aa02dc1f01e0a8,
+        type: 3}
+      propertyPath: attackRange
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2478327331827821027, guid: 806973c832ecd3b4d8aa02dc1f01e0a8,
         type: 3}
       propertyPath: m_Name
@@ -10237,12 +10242,12 @@ PrefabInstance:
     - target: {fileID: 4348519430584388245, guid: 806973c832ecd3b4d8aa02dc1f01e0a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 118.53
+      value: 643.5
       objectReference: {fileID: 0}
     - target: {fileID: 4348519430584388245, guid: 806973c832ecd3b4d8aa02dc1f01e0a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.74
+      value: -11.4
       objectReference: {fileID: 0}
     - target: {fileID: 4348519430584388245, guid: 806973c832ecd3b4d8aa02dc1f01e0a8,
         type: 3}
