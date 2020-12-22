@@ -13,8 +13,8 @@ public class Player : MonoBehaviour, IInteractable
     public float movementSpeed;
     public Rigidbody2D rb;
 
-    public float jumpForce = 10f;
-    public Transform feet;
+    public float jumpForce = 35f;
+    public Transform GroundCheck;
     public LayerMask groundLayers;
     public LayerMask enemyLayer;
 
@@ -46,9 +46,12 @@ public class Player : MonoBehaviour, IInteractable
 
 		animator.SetFloat("Speed", Mathf.Abs(mouseInput));
 
-        if (Input.GetButtonDown("Jump") && IsGrounded()) {
-            Jump();
-			animator.SetBool("isJumping", true);
+		//IsGrounded();
+
+        //if (Input.GetButtonDown("Jump")) {
+		if (Input.GetButtonDown("Jump") && IsGrounded()) {
+			Jump();
+			animator.SetTrigger("Jump");
         }
 
         if (Input.GetButtonDown("Fire1")) {
@@ -74,19 +77,19 @@ public class Player : MonoBehaviour, IInteractable
 
 
     void Jump() {
-        Vector2 movement = new Vector2(rb.velocity.x, jumpForce);
-
-        rb.velocity = movement;
+		rb.velocity = Vector2.up * jumpForce;
+		//Vector2 movement = new Vector2(rb.velocity.x, jumpForce);
+        //rb.velocity = movement;
     }
 
     public bool IsGrounded() {
-        Collider2D groundCheck = Physics2D.OverlapCircle(feet.position, 2f, groundLayers);
+		Collider2D groundCheck = Physics2D.OverlapCircle(GroundCheck.position, 2f, groundLayers);
 
-        Collider2D enemyCheck = Physics2D.OverlapCircle(feet.position, 2f, enemyLayer);
+		Collider2D enemyCheck = Physics2D.OverlapCircle(GroundCheck.position, 2f, enemyLayer);
 
         if (groundCheck != null || enemyCheck != null) {
-            return true;
 			Debug.Log("I can jump now!");
+			return true;
         }
         return false;
     }
@@ -103,12 +106,12 @@ public class Player : MonoBehaviour, IInteractable
             
             jumpForce *= (float)1.05;
             other.gameObject.SetActive(false);
-            Debug.Log(movementSpeed);
+            //Debug.Log(movementSpeed);
         }
 
      
         if (other.tag == "Interactable") {
-            Debug.Log("here in interactable");
+            //Debug.Log("here in interactable");
             interactable = other.GetComponent<IInteractable>();
 			//assumes all intractibles are chests:
 			other.GetComponent<Chest>().TurnOnMessage();

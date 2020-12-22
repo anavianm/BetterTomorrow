@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4169146237778013944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.99, y: 0, z: 0}
+  m_LocalPosition: {x: 21.99, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8818600396538907056}
@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 8818600395563376831}
   - component: {fileID: 8818600395563376828}
   - component: {fileID: 8818600395563376829}
-  - component: {fileID: 8818600395563376826}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -178,8 +177,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   movementSpeed: 25
   rb: {fileID: 8818600395563376768}
-  jumpForce: 10
-  feet: {fileID: 8818600395148127173}
+  jumpForce: 40
+  GroundCheck: {fileID: 8818600395148127173}
   groundLayers:
     serializedVersion: 2
     m_Bits: 256
@@ -221,34 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d731ba5579edc884eb8410f4a1c2d33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8818600395563376826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8818600395563376827}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29983a268ac80491985213c0d2e038f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8818600396299621586}
-  movementSpeed: 25
-  rb: {fileID: 8818600395563376768}
-  jumpForce: 10
-  feet: {fileID: 8818600395148127173}
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  Health: 0
-  Defense: 0
-  Attack: 0
-  AttackSpeed: 0
-  Luck: 0
 --- !u!1 &8818600396299621587
 GameObject:
   m_ObjectHideFlags: 0
