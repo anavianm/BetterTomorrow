@@ -69,6 +69,7 @@ public class GameHandler : MonoBehaviour{
 		// if the scene is the classroom scene and the boss dies, first level bool true
 		if ((sceneName == "Classroom Level") && finalBoss.BossHealth == 0){
 			firstEnemyDead = true;
+			SceneManager.LoadScene("WinterLevel");
 			// door.setActive(true);
 		}
 
@@ -84,9 +85,9 @@ public class GameHandler : MonoBehaviour{
 
 		//if both are true, then win screen
 
-//		if (win condition){
-//			SceneManager.LoadScene("EndWin");
-//		}
+		if (firstEnemyDead && secondEnemyDead){
+			SceneManager.LoadScene("Lisa_WinScreen");
+		}
 
 	}
 

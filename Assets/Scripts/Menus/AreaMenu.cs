@@ -11,6 +11,12 @@ public class AreaMenu : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void GoWinterGame()
+    {
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(3);
+    }
+
     void Start() {
 
     }
