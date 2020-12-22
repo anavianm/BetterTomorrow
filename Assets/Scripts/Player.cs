@@ -210,7 +210,7 @@ public class Player : MonoBehaviour, IInteractable
 				item6num += 1;
 				Text item6TextB = item6Text.GetComponent<Text>();
 				item6TextB.text = ("" + item6num);
-				gameHandler.CurrentHealth += 30
+				gameHandler.setFlatHealthIncrease(30);
 			}
 			else if ((other.gameObject.name == "Water(Clone)") || (other.gameObject.name == "item7")){
 				item7.SetActive(true);
