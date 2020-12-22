@@ -2453,6 +2453,16 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1928015223}
+    - target: {fileID: 2131069396499180456, guid: de9f40b73a953294a8aec3bee5890989,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1928015223}
+    - target: {fileID: 2131069396499180456, guid: de9f40b73a953294a8aec3bee5890989,
+        type: 3}
+      propertyPath: coinCounter
+      value: 
+      objectReference: {fileID: 1928015222}
     - target: {fileID: 2131069396499180457, guid: de9f40b73a953294a8aec3bee5890989,
         type: 3}
       propertyPath: m_LocalPosition.x
