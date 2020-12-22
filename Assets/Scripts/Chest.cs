@@ -14,6 +14,7 @@ public class Chest : MonoBehaviour, IInteractable
     //[SerializeField]
     //private Sprite openSprite, closedSprite;
     private bool isOpen;
+	private bool canBeOpened = true;
 
     //public Transform chest;
 
@@ -46,11 +47,18 @@ public class Chest : MonoBehaviour, IInteractable
     void Update()
     {
         mousePos = Input.mousePosition;
+
+//		if (canBeOpened == false){
+//			messageToOpen.SetActive(false);
+//		}
+
     }
 
 
 	public void TurnOnMessage(){
-		messageToOpen.SetActive(true);
+		if (canBeOpened == true){ 
+			messageToOpen.SetActive(true);
+		}
 	}
 
 	public void TurnOffMessage(){
@@ -62,8 +70,10 @@ public class Chest : MonoBehaviour, IInteractable
     {
         if (isOpen) {
             StopInteract();
+
         } else {
             isOpen = true;
+			canBeOpened = false;
             //spriteRenderer.sprite = openSprite;
 			ChestOpen.SetActive(true);
 			ChestClosed.SetActive(false);
