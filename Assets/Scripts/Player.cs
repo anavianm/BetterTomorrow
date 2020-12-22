@@ -107,7 +107,7 @@ public class Player : MonoBehaviour, IInteractable
 			animator.SetTrigger("Jump");
         }
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Chests")) {
            Interact();
         }
     }

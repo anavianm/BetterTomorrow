@@ -50,7 +50,7 @@ public class PlayerProjectileMovement : MonoBehaviour
 			other.gameObject.GetComponent<EnemyGround>().TakeDamage(damage);
 		}
 		else if (other.gameObject.tag == "EnemyLarge"){
-		other.gameObject.GetComponent<EnemyLarge>().TakeDamage(damage);
+		other.gameObject.GetComponent<FinalBossScript>().TakeDamage(damage);
 		} 
 
 		if (other.gameObject.tag != "Player") {Destroy(gameObject);}
