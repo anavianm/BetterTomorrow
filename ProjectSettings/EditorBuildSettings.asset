@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndWin.unity
     guid: 984ba39ce42e4ce419ece1cd53c95fb1
+  - enabled: 1
+    path: Assets/Scenes/Lisa_LoseScreen.unity
+    guid: ab4d4f7a0ffff71469909bacbe7792bd
+  - enabled: 1
+    path: Assets/Scenes/Lisa_WinScreen.unity
+    guid: 5615514451f12a3419ac360121d8910e
   m_configObjects: {}

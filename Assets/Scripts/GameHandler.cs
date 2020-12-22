@@ -51,8 +51,8 @@ public class GameHandler : MonoBehaviour{
 
 
 
-		if ((CurrentHealth <= 0) && (sceneName != "EndLose")) {
-				SceneManager.LoadScene("EndLose");
+		if ((CurrentHealth <= 0) && (sceneName != "Lisa_LoseScreen")) {
+				SceneManager.LoadScene("Lisa_LoseScreen");
 			}
 
 //		if (win condition){
