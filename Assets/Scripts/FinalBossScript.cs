@@ -11,10 +11,10 @@ public class FinalBossScript : MonoBehaviour {
 	public GameObject shockwave;
 	private bool playerHurt = false;
 
-	public float BossHealth = 10f;
+	public float BossHealth = 30f;
 	
 	private float stompTimer = 0;
-	private float stompTime = 20.0f;
+	public float stompTime = 20.0f;
 
 	private Renderer rend;
 	private Renderer rendPlayer;

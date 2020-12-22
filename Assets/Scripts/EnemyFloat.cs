@@ -6,6 +6,8 @@ public class EnemyFloat : MonoBehaviour
 {
     public float health;
 
+    private FinalBossScript finalBoss;
+
 	public GameObject projectilePrefab;
 	public Transform projectileParent;
     public Transform playerTransform;
@@ -46,7 +48,7 @@ public class EnemyFloat : MonoBehaviour
     void Start()
     {
 
-
+        finalBoss = GameObject.FindWithTag("EnemyLarge").GetComponent<FinalBossScript>();
         rb = gameObject.GetComponent<Rigidbody2D>();
 		playerTransform = GameObject.FindWithTag("Player").transform;
 		projectileParent = GameObject.FindWithTag("ProjectileParent").transform;
@@ -181,6 +183,11 @@ public class EnemyFloat : MonoBehaviour
 			if (TimeToShoot <= 0.1) {
                 TimeToShoot = 0.1;
             }
+
+            finalBoss.BossHealth += healthInc;
+            finalBoss.stompTime -= 0.01f;
+            finalBoss.damage += 0.01f;
+
 			DifficultyTimer = 0f;
 		}
 	}
