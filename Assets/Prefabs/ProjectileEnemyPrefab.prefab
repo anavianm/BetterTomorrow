@@ -186,3 +186,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityX: 0
   velocityY: 0
+  speed: 2
+  life: 20
+  ignoreThese:
+    serializedVersion: 2
+    m_Bits: 8192
+  damage: 1

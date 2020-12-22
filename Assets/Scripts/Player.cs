@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IInteractable
 {
@@ -33,6 +34,55 @@ public class Player : MonoBehaviour, IInteractable
     Item currentItem;
     
     float mouseInput;
+
+
+	public GameObject item1;
+	public GameObject item2;
+	public GameObject item3;
+	public GameObject item4;
+	public GameObject item5;
+	public GameObject item6;
+	public GameObject item7;
+
+	public GameObject item1Text;
+	public GameObject item2Text;
+	public GameObject item3Text;
+	public GameObject item4Text;
+	public GameObject item5Text;
+	public GameObject item6Text;
+	public GameObject item7Text;
+
+
+	private int item1num;
+	private int item2num;
+	private int item3num;
+	private int item4num;
+	private int item5num;
+	private int item6num;
+	private int item7num;
+
+
+	void Awake(){
+
+		item1.SetActive(false);
+		item2.SetActive(false);
+		item3.SetActive(false);
+		item4.SetActive(false);
+		item5.SetActive(false);
+		item6.SetActive(false);
+		item7.SetActive(false);
+		item1Text.SetActive(false);
+		item2Text.SetActive(false);
+		item3Text.SetActive(false);
+		item4Text.SetActive(false);
+		item5Text.SetActive(false);
+		item6Text.SetActive(false);
+		item7Text.SetActive(false);
+
+
+	}
+
+
 
     private void Start(){
 		animator = gameObject.GetComponentInChildren<Animator>();  
@@ -107,6 +157,58 @@ public class Player : MonoBehaviour, IInteractable
             jumpForce *= (float)1.05;
             other.gameObject.SetActive(false);
             //Debug.Log(movementSpeed);
+
+			if ((other.gameObject.name == "Food(Clone)") || (other.gameObject.name == "item1")){
+				item1.SetActive(true);
+				item1Text.SetActive(true);
+				item1num += 1;
+				Text item1TextB = item1Text.GetComponent<Text>();
+				item1TextB.text = ("" + item1num);
+			}
+			else if ((other.gameObject.name == "Cigarette(Clone)") || (other.gameObject.name == "item2")){
+				item2.SetActive(true);
+				item2Text.SetActive(true);
+				item2num += 1;
+				Text item2TextB = item2Text.GetComponent<Text>();
+				item2TextB.text = ("" + item2num);
+			}
+			else if ((other.gameObject.name == "FriendshipBracelet(Clone)") || (other.gameObject.name == "item3")){
+				item3.SetActive(true);
+				item3Text.SetActive(true);
+				item3num += 1;
+				Text item3TextB = item3Text.GetComponent<Text>();
+				item3TextB.text = ("" + item3num);
+			}
+			else if ((other.gameObject.name == "Inhaler(Clone)") || (other.gameObject.name == "item4")){
+				item4.SetActive(true);
+				item4Text.SetActive(true);
+				item4num += 1;
+				Text item4TextB = item4Text.GetComponent<Text>();
+				item4TextB.text = ("" + item4num);
+			}
+			else if ((other.gameObject.name == "MagnifyingGlass(Clone)") || (other.gameObject.name == "item5")){
+				item5.SetActive(true);
+				item5Text.SetActive(true);
+				item5num += 1;
+				Text item5TextB = item5Text.GetComponent<Text>();
+				item5TextB.text = ("" + item5num);
+			}
+			else if ((other.gameObject.name == "medicine(Clone)") || (other.gameObject.name == "item6")){
+				item6.SetActive(true);
+				item6Text.SetActive(true);
+				item6num += 1;
+				Text item6TextB = item6Text.GetComponent<Text>();
+				item6TextB.text = ("" + item6num);
+			}
+			else if ((other.gameObject.name == "Water(Clone)") || (other.gameObject.name == "item7")){
+				item7.SetActive(true);
+				item7Text.SetActive(true);
+				item7num += 1;
+				Text item7TextB = item7Text.GetComponent<Text>();
+				item7TextB.text = ("" + item7num);
+			}
+				
+
         }
 
      

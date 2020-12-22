@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 3988769426531026794}
   m_Layer: 0
   m_Name: ScreenBottomRespawn
-  m_TagString: Untagged
+  m_TagString: screenBottom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

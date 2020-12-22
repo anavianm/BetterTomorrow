@@ -9,7 +9,7 @@ public class GameHandler : MonoBehaviour{
 
 	//Player Stats 
 	public static float MaxHealth = 100;
-	public static float CurrentHealth = 100;
+	public static float CurrentHealth;
 	private static float Defense;
 	private static float Attack;
 	private static float AttackSpeed;
@@ -19,11 +19,12 @@ public class GameHandler : MonoBehaviour{
 
 	public GameObject healthText;
 	public RectTransform healthbar;
-	private string sceneName; 
+	private string sceneName;
 
 
     // Start is called before the first frame update
     void Start(){
+		CurrentHealth = MaxHealth;
 		UpdateHealth();
 		//Scene ThisScene = SceneManager.GetActiveScene();
 		sceneName = SceneManager.GetActiveScene().name;
@@ -47,6 +48,7 @@ public class GameHandler : MonoBehaviour{
 //		}
 
 	}
+		
 
 
 	public void TakeDamage(float damage){
@@ -57,8 +59,7 @@ public class GameHandler : MonoBehaviour{
 
 	public void UpdateHealth(){
 		Text healthTextB = healthText.GetComponent<Text>();
-
-		// healthTextB.text =  CurrentHealth + " \ " + MaxHealth;
+		healthTextB.text =  ("" + CurrentHealth + " / " + MaxHealth);
 	}
 
 	public void UpdateHealthBar(){

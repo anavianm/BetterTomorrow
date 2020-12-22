@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7286254442125812933}
   - component: {fileID: 8777857499634325503}
   - component: {fileID: 30000068429146979}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemyFloat
-  m_TagString: Untagged
+  m_TagString: EnemyFloat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,10 +98,12 @@ MonoBehaviour:
     type: 3}
   projectileParent: {fileID: 0}
   playerTransform: {fileID: 0}
-  gameBoundaryXMin: -30
-  gameBoundaryXMax: 30
-  gameBoundaryYMin: -30
-  gameBoundaryYMax: 30
+  distanceLimit: 70
+  TimeToShoot: 3
+  NextDifficulty: 10
+  ShootTimeDecrease: 0.5
+  ProjectileDamage: 1
+  projectileDamageInc: 1
 --- !u!1 &5612228475793084028
 GameObject:
   m_ObjectHideFlags: 0

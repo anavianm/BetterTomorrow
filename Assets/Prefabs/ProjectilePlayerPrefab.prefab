@@ -87,6 +87,10 @@ MonoBehaviour:
   velocityY: 0
   speed: 5
   life: 10
+  damage: 1
+  enemies:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7893446548521424071
 GameObject:
   m_ObjectHideFlags: 0

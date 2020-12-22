@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
+	private GameHandler gameHandler;
     public float velocityX = 0.0f;
     public float velocityY = 0.0f;
 	public float speed = 2.0f;
@@ -12,11 +12,14 @@ public class Projectile : MonoBehaviour
 	public float life = 20f;
 	private float lifetime = 0;
 
-    Rigidbody2D rb;
+	public LayerMask ignoreThese;
+	public float damage = 1;
+
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
+		gameHandler = GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>();
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -36,4 +39,15 @@ public class Projectile : MonoBehaviour
 			Destroy(gameObject);
 		} 
     }
+
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.layer != ignoreThese){
+			if (other.gameObject.tag == "Player"){
+				gameHandler.TakeDamage(damage);
+				Destroy(gameObject);
+			}
+		}
+	}
+
 }

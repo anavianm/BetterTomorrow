@@ -13,10 +13,10 @@ public class EnemySpawner : MonoBehaviour
     public int enemySpawnCountMin = 3;
     public int enemySpawnCountMax = 5;
 
-    private float enemySpawnXMin = -15.0f;
-    private float enemySpawnXMax = 15.0f;
-    private float enemySpawnYMin = -3.0f;
-    private float enemySpawnYMax = 5.0f;
+    private float enemySpawnXMin;
+    private float enemySpawnXMax;
+    private float enemySpawnYMin;
+    private float enemySpawnYMax;
 
 
     //references for gameobjects and transforms
@@ -51,6 +51,13 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		playerTransform = GameObject.FindWithTag("Player").transform;
+
+		enemySpawnXMin = (gameObject.transform.position.x - 15.0f);
+		enemySpawnXMax = (gameObject.transform.position.x + 15.0f);
+		enemySpawnYMin = (gameObject.transform.position.y - 3.0f);
+		enemySpawnYMax = (gameObject.transform.position.y + 5.0f);
+
         timeSinceStart = 0.0f;
 
         enemiesStored = new ArrayList();
@@ -94,7 +101,7 @@ public class EnemySpawner : MonoBehaviour
 
             float ratio = UnityEngine.Random.Range(0.0f, 1.0f);
 
-            UnityEngine.Debug.Log(ratio);
+            //UnityEngine.Debug.Log(ratio);
 
             Vector2 enemySize;
 

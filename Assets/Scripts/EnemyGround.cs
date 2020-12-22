@@ -8,23 +8,44 @@ using UnityEngine;
 
 public class EnemyGround : MonoBehaviour
 {
+	private GameHandler gameHandler;
     private Rigidbody2D rb;
-
     public int health;
     public int damageDealt;
 
     public Transform playerTransform;
+	public Transform ScreenBottom;
+	//private Transform spawnPos;
+	//public float bottomLimit = 100.0f;
 
     private float speed = 1.0f;
 
-    public float gameBoundaryXMin = -30.0f;
-    public float gameBoundaryXMax = 30.0f;
-    public float gameBoundaryYMin = -30.0f;
-    public float gameBoundaryYMax = 30.0f;
+    //public float gameBoundaryXMin = -3000.0f;
+    //public float gameBoundaryXMax = 3000.0f;
+    //public float gameBoundaryYMin = -3000.0f;
+    //public float gameBoundaryYMax = 3000.0f;
+
+	public LayerMask enemies;
+	public float damage = 1;
+
+
+	private float DifficultyTimer;
+	public float NextDifficulty = 10.0f;
+	public int DamageIncrease = 1;
+
+
+	void Awake(){
+
+		//spawnPos = gameObject.transform;
+
+	}
 
     // Start is called before the first frame update
     void Start()
     {
+		playerTransform = GameObject.FindWithTag("Player").transform;
+		ScreenBottom = GameObject.FindWithTag("screenBottom").transform;
+		gameHandler = GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>();
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         health = 1;
@@ -52,9 +73,11 @@ public class EnemyGround : MonoBehaviour
             PlayerData.coins++;
             Destroy(gameObject);
         }
-        else if (xPosition > gameBoundaryXMax || xPosition < gameBoundaryXMin || yPosition > gameBoundaryYMax || yPosition < gameBoundaryYMin)
+        //else if (xPosition > gameBoundaryXMax || xPosition < gameBoundaryXMin || yPosition > gameBoundaryYMax || yPosition < gameBoundaryYMin)
+		else if (yPosition <= ScreenBottom.position.y)
         {
             Destroy(gameObject);
+			Debug.Log("Groundling died from a fall");
         }
         else
         {
@@ -67,13 +90,27 @@ public class EnemyGround : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.tag == "PlayerProjectile")
-        {
-            health--;
+	void OnCollisionEnter2D(Collision2D other){
+		if (other.gameObject.layer != enemies){
+			if (other.gameObject.tag == "Player"){
+				gameHandler.TakeDamage(damage);
+			}
+		}
+	}
 
-            Destroy(collider.gameObject);
-        }
-    }
+
+	public void TakeDamage(int damage){
+		health -= damage;
+	}
+
+
+	void FixedUpdate(){
+		DifficultyTimer +=0.01f;
+		if (DifficultyTimer >= NextDifficulty){
+			damage += DamageIncrease;
+			DifficultyTimer = 0f;
+		}
+	}
+
+
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerProjectileMovement : MonoBehaviour
 {
+	
     public float velocityX = 0f;
     public float velocityY = 0f;
 	public float speed = 5.0f;
@@ -11,7 +12,10 @@ public class PlayerProjectileMovement : MonoBehaviour
 	public float life = 10f;
 	private float lifetime = 0;
 
-    Rigidbody2D rb;
+	public int damage =1;
+	public LayerMask enemies;
+
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -36,4 +40,19 @@ public class PlayerProjectileMovement : MonoBehaviour
 			Destroy(gameObject);
 		} 
     }
+
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.tag == "EnemyFloat"){
+			other.gameObject.GetComponent<EnemyFloat>().TakeDamage(damage);
+		}
+		else if (other.gameObject.tag == "EnemyGround"){
+			other.gameObject.GetComponent<EnemyGround>().TakeDamage(damage);
+		}
+		else if (other.gameObject.tag == "EnemyLarge"){
+		other.gameObject.GetComponent<EnemyLarge>().TakeDamage(damage);
+		} 
+
+		if (other.gameObject.tag != "Player") {Destroy(gameObject);}
+	}
 }

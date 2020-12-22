@@ -16,6 +16,7 @@ TagManager:
   - GameHandler
   - ProjectileParent
   - ProjectilePlayerParent
+  - screenBottom
   layers:
   - Default
   - TransparentFX

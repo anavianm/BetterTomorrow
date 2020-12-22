@@ -10,10 +10,10 @@ public class EnemyLarge : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    public float gameBoundaryXMin = -30.0f;
-    public float gameBoundaryXMax = 30.0f;
-    public float gameBoundaryYMin = -30.0f;
-    public float gameBoundaryYMax = 30.0f;
+    public float gameBoundaryXMin = -3000.0f;
+    public float gameBoundaryXMax = 3000.0f;
+    public float gameBoundaryYMin = -3000.0f;
+    public float gameBoundaryYMax = 3000.0f;
 
     private float timeBetweenJumps = 3.0f;
     private float timeSinceLastJump;
@@ -21,6 +21,7 @@ public class EnemyLarge : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		playerTransform = GameObject.FindWithTag("Player").transform;
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         health = 1;
@@ -69,13 +70,18 @@ public class EnemyLarge : MonoBehaviour
         rb.velocity = new Vector2(direction * 2.0f, 1.0f);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.tag == "PlayerProjectile")
-        {
-            health--;
+//    void OnTriggerEnter2D(Collider2D collider)
+//    {
+//        if (collider.gameObject.tag == "PlayerProjectile")
+//        {
+//            health--;
+//
+//            Destroy(collider.gameObject);
+//        }
+//    }
 
-            Destroy(collider.gameObject);
-        }
-    }
+	public void TakeDamage(int damage){
+		health -= damage;
+	}
+
 }

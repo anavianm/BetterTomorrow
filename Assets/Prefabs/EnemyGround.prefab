@@ -171,3 +171,7 @@ MonoBehaviour:
   gameBoundaryXMax: 30
   gameBoundaryYMin: -30
   gameBoundaryYMax: 30
+  enemies:
+    serializedVersion: 2
+    m_Bits: 8192
+  damage: 1
