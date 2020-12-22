@@ -45,8 +45,9 @@ public class GameHandler : MonoBehaviour{
 			playerdata = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
 		}
 
-		finalBoss = GameObject.FindWithTag("EnemyLarge").GetComponent<FinalBossScript>();
-
+		if (GameObject.FindWithTag("EnemyLarge") != null){
+			finalBoss = GameObject.FindWithTag("EnemyLarge").GetComponent<FinalBossScript>();
+		}
 		CurrentHealth = MaxHealth;
 		UpdateHealth();
 		//Scene ThisScene = SceneManager.GetActiveScene();
