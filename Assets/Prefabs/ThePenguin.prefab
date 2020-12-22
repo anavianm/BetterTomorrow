@@ -277,4 +277,5 @@ MonoBehaviour:
   anim: {fileID: 8332446197865232990}
   damage: 2
   shockwave: {fileID: 158882641818383934}
+  BossHealth: 10
   attackRange: 15
