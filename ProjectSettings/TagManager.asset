@@ -18,6 +18,7 @@ TagManager:
   - ProjectilePlayerParent
   - screenBottom
   - PauseMenuSlider
+  - Door
   layers:
   - Default
   - TransparentFX

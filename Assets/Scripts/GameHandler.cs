@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameHandler : MonoBehaviour{
 
 	
-
+	private FinalBossScript finalBoss;
 	//Player Stats 
 	public static float MaxHealth = 100;
 	public static float CurrentHealth;
@@ -28,13 +28,24 @@ public class GameHandler : MonoBehaviour{
 
 	private PlayerData playerdata;
 
+	private bool firstEnemyDead = false;
+	private bool secondEnemyDead = false;
+
+	SpriteRenderer door;
+
 
     // Start is called before the first frame update
     void Start(){
+		// door = GameObject.FindWithTag("door").GetComponent<SpriteRenderer>;
+		// door.setActive(false);
+		
+
 
 		if (GameObject.FindWithTag("Player") != null){
 			playerdata = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
 		}
+
+		finalBoss = GameObject.FindWithTag("EnemyLarge").GetComponent<FinalBossScript>();
 
 		CurrentHealth = MaxHealth;
 		UpdateHealth();
@@ -54,6 +65,24 @@ public class GameHandler : MonoBehaviour{
 		if ((CurrentHealth <= 0) && (sceneName != "Lisa_LoseScreen")) {
 				SceneManager.LoadScene("Lisa_LoseScreen");
 			}
+
+		// if the scene is the classroom scene and the boss dies, first level bool true
+		if ((sceneName == "Classroom Level") && finalBoss.BossHealth == 0){
+			firstEnemyDead = true;
+			// door.setActive(true);
+		}
+
+		if ((sceneName == "WinterLevel") && finalBoss.BossHealth == 0){
+			secondEnemyDead = true;
+			// door.setActive(true);
+		}
+
+
+		if(secondEnemyDead && firstEnemyDead){
+			SceneManager.LoadScene("Lisa_WinScreen");
+		}
+
+		//if both are true, then win screen
 
 //		if (win condition){
 //			SceneManager.LoadScene("EndWin");
