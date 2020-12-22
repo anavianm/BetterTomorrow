@@ -31,6 +31,7 @@ public class Player : MonoBehaviour, IInteractable
     public double Luck;
     public double HealthOverTime;
 
+
     private IInteractable interactable;
     
     Chest chest;
@@ -114,7 +115,6 @@ public class Player : MonoBehaviour, IInteractable
 
     private void FixedUpdate() {
         Vector2 movement = new Vector2(mouseInput * movementSpeed, rb.velocity.y);
-
         rb.velocity = movement;
 
 		if (Input.GetAxisRaw("Horizontal") > 0 && !m_FacingRight) {
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour, IInteractable
 				item1num += 1;
 				Text item1TextB = item1Text.GetComponent<Text>();
 				item1TextB.text = ("" + item1num);
-				gameHandler.setPercentageHealth(-0.5f);
+				gameHandler.setMaxHealthIncrease(1.10f);
 			}
 			else if ((other.gameObject.name == "Cigarette(Clone)") || (other.gameObject.name == "item2")){
 				item2.SetActive(true);
@@ -175,7 +175,7 @@ public class Player : MonoBehaviour, IInteractable
 				item2num += 1;
 				Text item2TextB = item2Text.GetComponent<Text>();
 				item2TextB.text = ("" + item2num);
-				gameHandler.setAttackBuff(0.05f);
+				gameHandler.setAttackBuff(0.15f);
 				gameHandler.setPercentageHealth(-0.5f);
 
 			}
@@ -185,6 +185,7 @@ public class Player : MonoBehaviour, IInteractable
 				item3num += 1;
 				Text item3TextB = item3Text.GetComponent<Text>();
 				item3TextB.text = ("" + item3num);
+				jumpForce += 10;
 			}
 			else if ((other.gameObject.name == "Inhaler(Clone)") || (other.gameObject.name == "item4")){
 				item4.SetActive(true);
@@ -192,7 +193,7 @@ public class Player : MonoBehaviour, IInteractable
 				item4num += 1;
 				Text item4TextB = item4Text.GetComponent<Text>();
 				item4TextB.text = ("" + item4num);
-				gameHandler.setPercentageHealth(-.5f);
+				movementSpeed += 3;
 			}
 			else if ((other.gameObject.name == "MagnifyingGlass(Clone)") || (other.gameObject.name == "item5")){
 				item5.SetActive(true);
@@ -200,7 +201,8 @@ public class Player : MonoBehaviour, IInteractable
 				item5num += 1;
 				Text item5TextB = item5Text.GetComponent<Text>();
 				item5TextB.text = ("" + item5num);
-				gameHandler.setPercentageHealth(-.5f);
+				gameHandler.setAttackCooldown(.5f);
+				
 			}
 			else if ((other.gameObject.name == "medicine(Clone)") || (other.gameObject.name == "item6")){
 				item6.SetActive(true);
@@ -208,7 +210,6 @@ public class Player : MonoBehaviour, IInteractable
 				item6num += 1;
 				Text item6TextB = item6Text.GetComponent<Text>();
 				item6TextB.text = ("" + item6num);
-				gameHandler.setPercentageHealth(-.5f);
 			}
 			else if ((other.gameObject.name == "Water(Clone)") || (other.gameObject.name == "item7")){
 				item7.SetActive(true);
@@ -216,7 +217,7 @@ public class Player : MonoBehaviour, IInteractable
 				item7num += 1;
 				Text item7TextB = item7Text.GetComponent<Text>();
 				item7TextB.text = ("" + item7num);
-				gameHandler.setPercentageHealth(-.5f);
+				gameHandler.changeHealthOverTime(.0002f);
 			}
 				
 

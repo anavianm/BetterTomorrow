@@ -30,7 +30,7 @@ public class EnemyFloat : MonoBehaviour
     public float healthInc = 0.5f; 
 	public double ShootTimeDecrease = 0.5;
 	public int ProjectileDamage = 1;
-	public int projectileDamageInc = 1;
+	public int projectileDamageInc = 2;
 
     public int enemyKillValue = 3;
 

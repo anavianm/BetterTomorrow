@@ -41,15 +41,15 @@ public class ItemDatabase : MonoBehaviour
 
     void BuildDatabase() {
         items = new List<Item>() {
-            new Item(0, "Magnifying Glass", "Increases Enemy Warning by 5%", 
+            new Item(0, "Magnifying Glass", "Decreases Shot Cooldown", 
             new Dictionary<string, double>
             {
-                {"Warning", 0.05}
+                {"Cooldown", 0.95}
             }),
 
             new Item(1, "Friendship bracelet", "Hurts anxiety monster's ability to slow you down by 5%", 
             new Dictionary<string, double>{
-                {"reverseSlow", 0.05}
+                {"Jump", 0.05}
             }),
 
             new Item(2, "Food", "Increases base HP by 5%", 

@@ -34,7 +34,7 @@ public class EnemyGround : MonoBehaviour
 
 	private float DifficultyTimer;
 	public float NextDifficulty = 10.0f;
-	public int DamageIncrease = 1;
+	public int DamageIncrease = 2;
 
     public int enemyKillValue = 3;
 
@@ -107,8 +107,10 @@ public class EnemyGround : MonoBehaviour
 
 
 	public void TakeDamage(float damage){
-        // attackBuff = gameHandler.getAttackBuff(); 
-        // damage *= attackBuff;
+        attackBuff = gameHandler.getAttackBuff(); 
+        float newdamage = damage * attackBuff;
+        damage += attackBuff;
+        Debug.Log("damage done" + damage);
 		health -= damage;
 	}
 

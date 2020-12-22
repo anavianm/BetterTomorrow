@@ -16,7 +16,7 @@ public class PlayerData : MonoBehaviour
 
     public static int enemiesKilled;
 
-    private float shotCooldown = 1.0f;
+    public float shotCooldown = 1.0f;
 
     private float timeSinceLastShot;
 

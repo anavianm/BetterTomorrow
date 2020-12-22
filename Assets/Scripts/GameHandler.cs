@@ -15,7 +15,7 @@ public class GameHandler : MonoBehaviour{
 	public static float Attack = 0.1f;
 	private static float AttackSpeed;
 	private static float Luck;
-	public static float HealthOverTime = 0.3f;
+	public static float HealthOverTime = 0.002f;
 	public static float HealingRate;
 
 	public int coins = 0;
@@ -26,9 +26,12 @@ public class GameHandler : MonoBehaviour{
 
 	public GameObject coinCounter;
 
+	private PlayerData playerdata;
+
 
     // Start is called before the first frame update
     void Start(){
+		playerdata = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
 		CurrentHealth = MaxHealth;
 		UpdateHealth();
 		//Scene ThisScene = SceneManager.GetActiveScene();
@@ -56,7 +59,17 @@ public class GameHandler : MonoBehaviour{
 
 	void FixedUpdate()
 	{
+		addHealthSmall();
 		UpdateHealth();
+	}
+
+	void addHealthSmall()
+	{
+		if(CurrentHealth != MaxHealth)
+		{
+			CurrentHealth += HealthOverTime;
+		}
+		
 	}
 		
 
@@ -110,6 +123,16 @@ public class GameHandler : MonoBehaviour{
 	public void setMaxHealthIncrease(float maxHealth)
 	{
 		MaxHealth *= maxHealth;
+	}
+
+	public void setAttackCooldown(float cooldown)
+	{
+		playerdata.shotCooldown *= cooldown;
+	}
+
+	public void changeHealthOverTime(float hot)
+	{
+		HealthOverTime = hot;
 	}
 
 

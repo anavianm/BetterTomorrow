@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
+		
 		gameHandler = GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>();
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
