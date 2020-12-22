@@ -12,7 +12,7 @@ public class PlayerProjectileMovement : MonoBehaviour
 	public float life = 10f;
 	private float lifetime = 0;
 
-	public int damage =1;
+	public float damage = 1.0f;
 	public LayerMask enemies;
 
     private Rigidbody2D rb;
