@@ -31,7 +31,11 @@ public class GameHandler : MonoBehaviour{
 
     // Start is called before the first frame update
     void Start(){
-		playerdata = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
+
+		if (GameObject.FindWithTag("Player") != null){
+			playerdata = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
+		}
+
 		CurrentHealth = MaxHealth;
 		UpdateHealth();
 		//Scene ThisScene = SceneManager.GetActiveScene();
