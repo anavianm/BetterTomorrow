@@ -54,9 +54,9 @@ public class GameHandler : MonoBehaviour{
     }
 
 	void Update () {     // always include a way to quit the game :)
-		if (Input.GetKey("escape")) {
-			Application.Quit ();
-		}
+		// if (Input.GetKey("escape")) {
+		// 	Application.Quit ();
+		// }
 
 		if (CurrentHealth >= MaxHealth){CurrentHealth = MaxHealth;}
 
