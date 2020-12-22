@@ -6,20 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour{
 
+	
 
 	//Player Stats 
 	public static float MaxHealth = 100;
 	public static float CurrentHealth;
-	private static float Defense;
-	private static float Attack;
+	private static float Defense = 0.5f;
+	public static float Attack = 0.1f;
 	private static float AttackSpeed;
 	private static float Luck;
-	public static float HealthOverTime;
+	public static float HealthOverTime = 0.3f;
 	public static float HealingRate;
 
+	public int coins = 0;
+
 	public GameObject healthText;
-	public RectTransform healthbar;
+	public RectTransform healthBar;
 	private string sceneName;
+
+	public GameObject coinCounter;
 
 
     // Start is called before the first frame update
@@ -48,10 +53,17 @@ public class GameHandler : MonoBehaviour{
 //		}
 
 	}
+
+	void FixedUpdate()
+	{
+		UpdateHealth();
+	}
 		
 
 
 	public void TakeDamage(float damage){
+		// Debug.Log(damage);
+		// damage -= Defense;
 		CurrentHealth -= damage;
 		UpdateHealth();
 	}
@@ -63,7 +75,41 @@ public class GameHandler : MonoBehaviour{
 	}
 
 	public void UpdateHealthBar(){
-		healthbar.sizeDelta = new Vector2(CurrentHealth * 2, healthbar.sizeDelta.y);
+		healthBar.sizeDelta = new Vector2(CurrentHealth * 2, healthBar.sizeDelta.y);
+	}
+
+	public void UpdateCoinCounter() {
+		Text coinText = coinCounter.GetComponent<Text>();
+		coinText.text = ("Coins" + 	coins);
+	}
+
+	public float getAttackBuff()
+	{
+		return Attack;
+	}
+
+	public void setAttackBuff(float attack)
+	{
+		Attack += attack;
+	}
+
+	public void setFlatHealthIncrease(float health)
+	{
+		CurrentHealth += health;
+		UpdateHealth();
+	}
+
+	public void setPercentageHealth(float health)
+	{
+		float decreaseHealth = CurrentHealth * health;
+		Debug.Log(health);
+		CurrentHealth += decreaseHealth;
+		UpdateHealth();
+	}	
+
+	public void setMaxHealthIncrease(float maxHealth)
+	{
+		MaxHealth *= maxHealth;
 	}
 
 

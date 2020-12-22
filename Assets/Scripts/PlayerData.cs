@@ -60,7 +60,7 @@ public class PlayerData : MonoBehaviour
         float playerX = transform.position[0];
         float playerY = transform.position[1];
 
-        Debug.Log("MOUSE POS: " + Input.mousePosition + " player POS: " + transform.position);
+        // Debug.Log("MOUSE POS: " + Input.mousePosition + " player POS: " + transform.position);
 
         //calculate projectile velocity so it is a constant speed
         float speed = 7.5f;
@@ -79,7 +79,7 @@ public class PlayerData : MonoBehaviour
 
         float ratio = Mathf.Abs(x / y);
 
-        Debug.Log("X: " + x + " Y: " + y + " Ratio: " + ratio);
+        // Debug.Log("X: " + x + " Y: " + y + " Ratio: " + ratio);
 
         float velocityY = Mathf.Sqrt(speed / (ratio + 1.0f));
         float velocityX = velocityY * ratio;
@@ -93,7 +93,7 @@ public class PlayerData : MonoBehaviour
             velocityX = -velocityX;
         }
 
-        Debug.Log("VELOCITYX: " + velocityX + " VelocityY: " + velocityY);
+        // Debug.Log("VELOCITYX: " + velocityX + " VelocityY: " + velocityY);
 
         //GameObject spawnedProjectile = Instantiate(playerProjectilePrefab, new Vector2(playerX, playerY), Quaternion.identity, playerProjectileParent);
 		GameObject spawnedProjectile = Instantiate(playerProjectilePrefab, new Vector2(FirePoint.position.x, FirePoint.position.y), Quaternion.identity, playerProjectileParent);

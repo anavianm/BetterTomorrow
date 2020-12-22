@@ -85,9 +85,9 @@ public class Chest : MonoBehaviour, IInteractable
             }else if(item.title == "Cigarettes"){
                 Instantiate(cigarettes, new Vector2(gameObject.transform.position.x + 5, gameObject.transform.position.y) , Quaternion.identity);
             }
-            temp = Instantiate(myObject);
-            temp.SetActive(true);
-            temp.transform.position = new Vector2(0,0);
+            // temp = Instantiate(myObject);
+            // temp.SetActive(true);
+            // temp.transform.position = new Vector2(0,0);
             player.addToInventory(item);
 
         }

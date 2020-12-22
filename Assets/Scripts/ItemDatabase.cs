@@ -70,7 +70,7 @@ public class ItemDatabase : MonoBehaviour
             new Item(5, "Cigarettes", "Takes 50% of HP but gives more attack", 
             new Dictionary<string, double>{
                 {"HP", 0.5},
-                {"Attack", 0.5}
+                {"Attack", 0.05}
             }),
 
             new Item(6, "Inhaler", "Speed Increase", 

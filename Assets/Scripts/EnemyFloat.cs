@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFloat : MonoBehaviour
 {
-    public int health;
+    public float health;
 
 	public GameObject projectilePrefab;
 	public Transform projectileParent;
@@ -27,9 +27,12 @@ public class EnemyFloat : MonoBehaviour
 
 	private float DifficultyTimer;
 	public float NextDifficulty = 10.0f;
+    public float healthInc = 0.5f; 
 	public double ShootTimeDecrease = 0.5;
 	public int ProjectileDamage = 1;
 	public int projectileDamageInc = 1;
+
+    public int enemyKillValue = 3;
 
 
 	void Awake(){
@@ -126,7 +129,7 @@ public class EnemyFloat : MonoBehaviour
                     velocityX = -velocityX;
                 }
 
-                Debug.Log("Ratio: " + ratio + " X VEL: " + velocityX + " Y VEL: " + velocityY);
+                // Debug.Log("Ratio: " + ratio + " X VEL: " + velocityX + " Y VEL: " + velocityY);
 
                 ShootProjectile(enemyX, enemyY, velocityX, velocityY);
                 timeSinceLastShot = 0.0f;
@@ -172,8 +175,12 @@ public class EnemyFloat : MonoBehaviour
 		DifficultyTimer +=0.01f;
 		if (DifficultyTimer >= NextDifficulty){
 			ProjectileDamage += projectileDamageInc;
+        
+            health += healthInc ;
 			TimeToShoot -= ShootTimeDecrease;
-			if (TimeToShoot <= 0.1){TimeToShoot = 0.1;}
+			if (TimeToShoot <= 0.1) {
+                TimeToShoot = 0.1;
+            }
 			DifficultyTimer = 0f;
 		}
 	}
@@ -199,7 +206,7 @@ public class EnemyFloat : MonoBehaviour
 //        }
 //    }
 
-	public void TakeDamage(int damage){
+	public void TakeDamage(float damage){
 		health -= damage;
 	}
 }

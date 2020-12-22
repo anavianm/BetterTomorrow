@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour, IInteractable
 {
 
+
+	private GameHandler gameHandler;
+
 	public Animator animator;
 	private bool m_FacingRight = true; 
 
@@ -79,12 +82,12 @@ public class Player : MonoBehaviour, IInteractable
 		item6Text.SetActive(false);
 		item7Text.SetActive(false);
 
-
 	}
 
 
 
     private void Start(){
+		gameHandler = GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>();
 		animator = gameObject.GetComponentInChildren<Animator>();  
 		rb = GetComponent<Rigidbody2D>();
         chest = GameObject.FindGameObjectWithTag("Interactable").GetComponent<Chest>();
@@ -164,6 +167,7 @@ public class Player : MonoBehaviour, IInteractable
 				item1num += 1;
 				Text item1TextB = item1Text.GetComponent<Text>();
 				item1TextB.text = ("" + item1num);
+				gameHandler.setPercentageHealth(-0.5f);
 			}
 			else if ((other.gameObject.name == "Cigarette(Clone)") || (other.gameObject.name == "item2")){
 				item2.SetActive(true);
@@ -171,6 +175,9 @@ public class Player : MonoBehaviour, IInteractable
 				item2num += 1;
 				Text item2TextB = item2Text.GetComponent<Text>();
 				item2TextB.text = ("" + item2num);
+				gameHandler.setAttackBuff(0.05f);
+				gameHandler.setPercentageHealth(-0.5f);
+
 			}
 			else if ((other.gameObject.name == "FriendshipBracelet(Clone)") || (other.gameObject.name == "item3")){
 				item3.SetActive(true);
@@ -185,6 +192,7 @@ public class Player : MonoBehaviour, IInteractable
 				item4num += 1;
 				Text item4TextB = item4Text.GetComponent<Text>();
 				item4TextB.text = ("" + item4num);
+				gameHandler.setPercentageHealth(-.5f);
 			}
 			else if ((other.gameObject.name == "MagnifyingGlass(Clone)") || (other.gameObject.name == "item5")){
 				item5.SetActive(true);
@@ -192,6 +200,7 @@ public class Player : MonoBehaviour, IInteractable
 				item5num += 1;
 				Text item5TextB = item5Text.GetComponent<Text>();
 				item5TextB.text = ("" + item5num);
+				gameHandler.setPercentageHealth(-.5f);
 			}
 			else if ((other.gameObject.name == "medicine(Clone)") || (other.gameObject.name == "item6")){
 				item6.SetActive(true);
@@ -199,6 +208,7 @@ public class Player : MonoBehaviour, IInteractable
 				item6num += 1;
 				Text item6TextB = item6Text.GetComponent<Text>();
 				item6TextB.text = ("" + item6num);
+				gameHandler.setPercentageHealth(-.5f);
 			}
 			else if ((other.gameObject.name == "Water(Clone)") || (other.gameObject.name == "item7")){
 				item7.SetActive(true);
@@ -206,6 +216,7 @@ public class Player : MonoBehaviour, IInteractable
 				item7num += 1;
 				Text item7TextB = item7Text.GetComponent<Text>();
 				item7TextB.text = ("" + item7num);
+				gameHandler.setPercentageHealth(-.5f);
 			}
 				
 

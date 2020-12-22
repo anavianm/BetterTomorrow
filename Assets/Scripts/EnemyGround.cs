@@ -10,11 +10,12 @@ public class EnemyGround : MonoBehaviour
 {
 	private GameHandler gameHandler;
     private Rigidbody2D rb;
-    public int health;
+    public float health;
     public int damageDealt;
 
     public Transform playerTransform;
 	public Transform ScreenBottom;
+    
 	//private Transform spawnPos;
 	//public float bottomLimit = 100.0f;
 
@@ -26,12 +27,18 @@ public class EnemyGround : MonoBehaviour
     //public float gameBoundaryYMax = 3000.0f;
 
 	public LayerMask enemies;
-	public float damage = 1;
+	public float damage = 1f;
+
+    public float healthInc = 0.5f; 
 
 
 	private float DifficultyTimer;
 	public float NextDifficulty = 10.0f;
 	public int DamageIncrease = 1;
+
+    public int enemyKillValue = 3;
+
+    public float attackBuff;
 
 
 	void Awake(){
@@ -77,7 +84,7 @@ public class EnemyGround : MonoBehaviour
 		else if (yPosition <= ScreenBottom.position.y)
         {
             Destroy(gameObject);
-			Debug.Log("Groundling died from a fall");
+			// Debug.Log("Groundling died from a fall");
         }
         else
         {
@@ -99,7 +106,9 @@ public class EnemyGround : MonoBehaviour
 	}
 
 
-	public void TakeDamage(int damage){
+	public void TakeDamage(float damage){
+        // attackBuff = gameHandler.getAttackBuff(); 
+        // damage *= attackBuff;
 		health -= damage;
 	}
 
@@ -107,6 +116,7 @@ public class EnemyGround : MonoBehaviour
 	void FixedUpdate(){
 		DifficultyTimer +=0.01f;
 		if (DifficultyTimer >= NextDifficulty){
+            health += healthInc ;
 			damage += DamageIncrease;
 			DifficultyTimer = 0f;
 		}
